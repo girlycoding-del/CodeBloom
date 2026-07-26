@@ -207,6 +207,70 @@
 
     /* ===== FOOTER ===== */
     .footer{background:var(--bg-secondary);border-top:1px solid var(--border-color);padding:40px 0 20px;text-align:center;font-size:13px;color:var(--text-muted)}
+  /* ===== BADGES & CHAPTER LOCK STYLES ===== */
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #ff6b6b, #ffa502);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(255, 107, 107, 0.25);
+}
+
+.blooms-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25);
+}
+
+.lesson-item.locked {
+  opacity: 0.55;
+  background: var(--bg-primary);
+  border-style: dashed;
+}
+
+.lesson-item.locked .lesson-header {
+  cursor: not-allowed;
+}
+
+.lesson-item.completed {
+  border-color: #10b981;
+}
+
+.lesson-item.completed .lesson-num {
+  background: #10b981 !important;
+  color: #fff !important;
+}
+
+.btn-complete-chapter {
+  margin-top: 15px;
+  background: #10b981;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-complete-chapter:hover {
+  background: #059669;
+}
   </style>
 </head>
 <body>
@@ -236,6 +300,19 @@
         <button class="theme-toggle" id="themeToggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
       </div>
     </div>
+    <div class="nav-actions">
+  <div class="streak-badge" id="streakBadge" title="Daily Learning Streak">
+    <i class="fa-solid fa-fire"></i> <span id="streakCount">1</span>
+  </div>
+
+  <div class="blooms-badge" id="bloomsBadge" title="Blooms Earned">
+    <i class="fa-solid fa-seedling"></i> <span id="bloomsCount">0</span>
+  </div>
+
+  <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+    <i class="fa-solid fa-moon"></i>
+  </button>
+</div>
   </nav>
 
   <section class="hero">
@@ -343,26 +420,49 @@
   </section>
 
   <section class="section" id="certifications" style="background:var(--bg-secondary);">
-    <div class="container">
-      <div class="section-label"><i class="fa-solid fa-certificate"></i> Achievement</div>
-      <h2 class="section-title">Earn Your <span class="gradient-text">Certification</span></h2>
-      <p class="section-subtitle">Enter your name below to generate your personalized HTML & CSS Completion Certificate.</p>
+  <div class="container">
+    <div class="section-label"><i class="fa-solid fa-certificate"></i> Achievement</div>
+    <h2 class="section-title">Earn Your <span class="gradient-text">Certifications</span></h2>
+    <p class="section-subtitle">Complete all chapters in a track to unlock its official certificate!</p>
 
-      <div class="cert-box">
-        <div style="display:flex;gap:10px;justify-content:center;margin-bottom:15px;">
-          <input type="text" id="studentName" placeholder="Enter Full Name" style="padding:10px 14px;border:1px solid var(--border-color);border-radius:var(--radius-sm);width:250px;">
-          <button class="btn btn-primary btn-sm" onclick="generateCert()">Generate Certificate</button>
-        </div>
+    <div class="cert-box">
+      <div style="display:flex; gap:10px; justify-content:center; margin-bottom:20px;">
+        <button class="btn btn-secondary btn-sm" id="btnCertHtml" onclick="selectCertTrack('html')">
+          <i class="fa-brands fa-html5"></i> HTML Track
+        </button>
+        <button class="btn btn-secondary btn-sm" id="btnCertCss" onclick="selectCertTrack('css')">
+          <i class="fa-brands fa-css3-alt"></i> CSS Track
+        </button>
+      </div>
 
-        <div class="cert-preview" id="certArea" style="display:none;">
-          <h2 style="font-size:22px;color:var(--accent-purple);margin-bottom:10px;">CERTIFICATE OF COMPLETION</h2>
-          <p style="font-size:13px;color:var(--text-secondary);">This is proudly presented to</p>
-          <h3 id="certName" style="font-size:24px;margin:10px 0;color:var(--text-primary);">Your Name</h3>
-          <p style="font-size:13px;color:var(--text-secondary);">for successfully mastering HTML & CSS fundamentals through CodeBloom.</p>
-          <button class="btn btn-secondary btn-sm" style="margin-top:15px;" onclick="window.print()"><i class="fa-solid fa-print"></i> Print / Save PDF</button>
+      <div style="display:flex; gap:10px; justify-content:center; margin-bottom:15px; flex-wrap:wrap;">
+        <input type="text" id="studentName" placeholder="Enter Full Name" style="padding:10px 14px; border:1px solid var(--border-color); border-radius:var(--radius-sm); width:250px;">
+        <button class="btn btn-primary btn-sm" onclick="generateTrackCert()">
+          <i class="fa-solid fa-award"></i> Generate Certificate
+        </button>
+      </div>
+
+      <div class="cert-preview" id="certArea" style="display:none; margin-top:20px;">
+        <h2 style="font-size:22px; color:var(--accent-purple); margin-bottom:6px; letter-spacing:1px;">CERTIFICATE OF COMPLETION</h2>
+        <p style="font-size:12px; color:var(--text-secondary); text-transform:uppercase; letter-spacing:2px; margin-bottom:12px;">CodeBloom Web Academy</p>
+        <p style="font-size:13px; color:var(--text-secondary);">This is proudly presented to</p>
+        <h3 id="certName" style="font-size:26px; margin:10px 0; color:var(--text-primary); text-transform:capitalize;">Your Name</h3>
+        <p style="font-size:14px; color:var(--text-secondary); max-width:450px; margin:0 auto;" id="certDesc">
+          for successfully completing all required chapters and demonstrating mastery in HTML & Web Structure.
+        </p>
+        <div style="margin-top:20px; font-size:12px; color:var(--text-muted); display:flex; justify-content:space-around; align-items:center;">
+          <div><i class="fa-solid fa-check-circle" style="color:#10b981;"></i> Verified Track</div>
+          <div><i class="fa-solid fa-calendar-alt"></i> Issued: <span id="certDate"></span></div>
         </div>
+        <button class="btn btn-secondary btn-sm" style="margin-top:20px;" onclick="window.print()">
+          <i class="fa-solid fa-print"></i> Print / Download PDF
+        </button>
       </div>
     </div>
+  </div>
+</section>
+
+      
   </section>
 
   <section class="section" id="resources">
@@ -628,31 +728,108 @@
     /* ===================================================
        RENDER FUNCTIONS
        =================================================== */
-    function renderLessons(lessons, targetId) {
-      var container = document.getElementById(targetId);
-      container.innerHTML = "";
-      lessons.forEach(function(item, index) {
-        var div = document.createElement("div");
-        div.className = "lesson-item";
-        div.innerHTML = `
-          <div class="lesson-header" onclick="toggleAccordion(this)">
-            <div class="lesson-header-left">
-              <div class="lesson-num">${item.num}</div>
-              <div class="lesson-title">${item.title}</div>
-            </div>
-            <i class="fa-solid fa-chevron-down lesson-toggle"></i>
-          </div>
-          <div class="lesson-body">
-            <div class="lesson-body-inner">
-              <p class="lesson-explanation">${item.content.replace(/\n/g, '<br>')}</p>
-              <div class="code-block">${escapeHtml(item.code)}</div>
-              <div class="tip-box"><strong>Tip:</strong> ${item.tip}</div>
-            </div>
-          </div>
-        `;
-        container.appendChild(div);
-      });
+// PASTE THIS NEW CODE HERE:
+var userProgress = { htmlIndex: 0, cssIndex: 0, blooms: 0 };
+try {
+  var saved = localStorage.getItem('codebloom_progress');
+  if (saved) { userProgress = JSON.parse(saved); }
+} catch(e) {}
+
+function updateStreak() {
+  var lastVisit = localStorage.getItem('codebloom_last_date');
+  var today = new Date().toDateString();
+  var streak = parseInt(localStorage.getItem('codebloom_streak') || '1');
+
+  if (lastVisit) {
+    if (lastVisit !== today) {
+      var lastDate = new Date(lastVisit);
+      var currentDate = new Date(today);
+      var diffTime = Math.abs(currentDate - lastDate);
+      var diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+      if (diffDays === 1) {
+        streak += 1; // Unbroken streak!
+      } else if (diffDays > 1) {
+        streak = 1;  // Missed a day, reset streak
+      }
+      localStorage.setItem('codebloom_last_date', today);
+      localStorage.setItem('codebloom_streak', streak);
     }
+  } else {
+    // Brand new user
+    localStorage.setItem('codebloom_last_date', today);
+    localStorage.setItem('codebloom_streak', '1');
+  }
+
+  // Update UI badge
+  var streakEl = document.getElementById('streakCount');
+  if (streakEl) { streakEl.innerText = streak; }
+
+  var bloomsEl = document.getElementById('bloomsCount');
+  if (bloomsEl) { bloomsEl.innerText = userProgress.blooms || 0; }
+}
+
+function renderLessons(lessons, targetId) {
+  var container = document.getElementById(targetId);
+  if (!container) return;
+  container.innerHTML = "";
+
+  var isHtml = targetId === 'html-lessons';
+  var unlockedIndex = isHtml ? userProgress.htmlIndex : userProgress.cssIndex;
+
+  lessons.forEach(function(item, index) {
+    var isLocked = index > unlockedIndex;
+    var isCompleted = index < unlockedIndex;
+
+    var div = document.createElement("div");
+    div.className = "lesson-item" + (isLocked ? " locked" : "") + (isCompleted ? " completed" : "");
+    
+    div.innerHTML = `
+      <div class="lesson-header" onclick="${isLocked ? '' : 'toggleAccordion(this)'}">
+        <div class="lesson-header-left">
+          <div class="lesson-num">${isCompleted ? '<i class="fa-solid fa-check"></i>' : item.num}</div>
+          <div class="lesson-title">${item.title} ${isLocked ? '<i class="fa-solid fa-lock" style="font-size:12px;margin-left:6px;color:var(--text-muted)"></i>' : ''}</div>
+        </div>
+        <i class="fa-solid fa-chevron-down lesson-toggle"></i>
+      </div>
+      <div class="lesson-body">
+        <div class="lesson-body-inner">
+          <p class="lesson-explanation">${item.content.replace(/\n/g, '<br>')}</p>
+          <div class="code-block">${escapeHtml(item.code)}</div>
+          <div class="tip-box"><strong>Tip:</strong> ${item.tip}</div>
+          ${!isCompleted ? `
+            <button class="btn-complete-chapter" onclick="completeChapter('${isHtml ? 'html' : 'css'}', ${index})">
+              <i class="fa-solid fa-seedling"></i> Complete Chapter (+50 Blooms)
+            </button>
+          ` : '<p style="color:#10b981;font-size:12px;font-weight:700;margin-top:12px;"><i class="fa-solid fa-check-circle"></i> Chapter Completed (+50 Blooms Earned)</p>'}
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function completeChapter(track, index) {
+  if (track === 'html') {
+    if (index === userProgress.htmlIndex) {
+      userProgress.htmlIndex++;
+      userProgress.blooms = (userProgress.blooms || 0) + 50;
+    }
+  } else {
+    if (index === userProgress.cssIndex) {
+      userProgress.cssIndex++;
+      userProgress.blooms = (userProgress.blooms || 0) + 50;
+    }
+  }
+
+  localStorage.setItem('codebloom_progress', JSON.stringify(userProgress));
+
+  var bloomsEl = document.getElementById('bloomsCount');
+  if (bloomsEl) { bloomsEl.innerText = userProgress.blooms; }
+
+  renderLessons(htmlLessons, 'html-lessons');
+  renderLessons(cssLessons, 'css-lessons');
+}
 
     function renderProjects() {
       var grid = document.getElementById("projects-grid");
@@ -911,27 +1088,65 @@ var quizQuestions = [
    Unlocks certificate only after completing the quiz/course
    =================================================== */
 
-// Update this inside your script tag:
-function generateCert() {
-  var name = document.getElementById("studentName").value.trim();
+/* ===================================================
+   TRACK CERTIFICATE GENERATOR (HTML & CSS)
+   =================================================== */
+var selectedCertTrack = 'html'; // default track
+
+function selectCertTrack(track) {
+  selectedCertTrack = track;
   
-  // Check if the user has completed the quiz first
-  if (currentQIndex < quizQuestions.length) {
-    alert("Please complete the Knowledge Quiz first to earn your certificate!");
-    // Smooth scroll to quiz section
-    document.getElementById("quiz").scrollIntoView({ behavior: 'smooth' });
-    return;
+  // Highlight active button
+  var htmlBtn = document.getElementById('btnCertHtml');
+  var cssBtn = document.getElementById('btnCertCss');
+  
+  if (track === 'html') {
+    if (htmlBtn) htmlBtn.style.borderColor = 'var(--accent-purple)';
+    if (cssBtn) cssBtn.style.borderColor = 'var(--border-color)';
+  } else {
+    if (cssBtn) cssBtn.style.borderColor = 'var(--accent-purple)';
+    if (htmlBtn) htmlBtn.style.borderColor = 'var(--border-color)';
   }
+}
+
+function generateTrackCert() {
+  var name = document.getElementById("studentName").value.trim();
 
   if (!name) {
-    alert("Please enter your full name!");
+    alert("Please enter your full name first!");
     return;
   }
 
-  // Set the student's name on the certificate and make it visible
+  // Check if track is completed
+  var isHtmlComplete = userProgress.htmlIndex >= htmlLessons.length;
+  var isCssComplete = userProgress.cssIndex >= cssLessons.length;
+
+  if (selectedCertTrack === 'html' && !isHtmlComplete) {
+    alert("🔒 HTML Certificate Locked!\n\nYou must complete all " + htmlLessons.length + " HTML chapters to unlock this certificate.");
+    return;
+  }
+
+  if (selectedCertTrack === 'css' && !isCssComplete) {
+    alert("🔒 CSS Certificate Locked!\n\nYou must complete all " + cssLessons.length + " CSS chapters to unlock this certificate.");
+    return;
+  }
+
+  // Set Certificate Content based on track
   document.getElementById("certName").innerText = name;
-  document.getElementById("certArea").style.display = "block";
-  document.getElementById("certArea").scrollIntoView({ behavior: 'smooth' });
+  document.getElementById("certDate").innerText = new Date().toLocaleDateString();
+
+  if (selectedCertTrack === 'html') {
+    document.getElementById("certDesc").innerText = 
+      "for successfully completing all " + htmlLessons.length + " HTML chapters and demonstrating full mastery of HTML5, forms, inputs, and structural semantics.";
+  } else {
+    document.getElementById("certDesc").innerText = 
+      "for successfully completing all " + cssLessons.length + " CSS chapters and demonstrating full mastery of CSS3, Flexbox, Grid layouts, and responsive web design.";
+  }
+
+  // Show Certificate
+  var certArea = document.getElementById("certArea");
+  certArea.style.display = "block";
+  certArea.scrollIntoView({ behavior: 'smooth' });
 }
 
     
@@ -981,6 +1196,111 @@ function showResource(type) {
     );
   }
 }
+/* ===================================================
+   PROGRESS, STREAK & BLOOMS (XP) SYSTEM
+   =================================================== */
+
+// Load saved progress or initialize defaults
+var userProgress = { htmlIndex: 0, cssIndex: 0, blooms: 0 };
+try {
+  var saved = localStorage.getItem('codebloom_progress');
+  if (saved) { userProgress = JSON.parse(saved); }
+} catch(e) {}
+
+// Daily Streak Calculation
+function updateStreak() {
+  var lastVisit = localStorage.getItem('codebloom_last_date');
+  var today = new Date().toDateString();
+  var streak = parseInt(localStorage.getItem('codebloom_streak') || '1');
+
+  if (lastVisit) {
+    var lastDate = new Date(lastVisit);
+    var currentDate = new Date(today);
+    var diffTime = Math.abs(currentDate - lastDate);
+    var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 1) {
+      streak += 1;
+    } else if (diffDays > 1) {
+      streak = 1;
+    }
+  }
+
+  localStorage.setItem('codebloom_last_date', today);
+  localStorage.setItem('codebloom_streak', streak);
+
+  var streakEl = document.getElementById('streakCount');
+  if (streakEl) { streakEl.innerText = streak; }
+
+  var bloomsEl = document.getElementById('bloomsCount');
+  if (bloomsEl) { bloomsEl.innerText = userProgress.blooms || 0; }
+}
+
+// Render Lessons with Sequential Locking Logic
+function renderLessons(lessons, targetId) {
+  var container = document.getElementById(targetId);
+  if (!container) return;
+  container.innerHTML = "";
+
+  var isHtml = targetId === 'html-lessons';
+  var unlockedIndex = isHtml ? userProgress.htmlIndex : userProgress.cssIndex;
+
+  lessons.forEach(function(item, index) {
+    var isLocked = index > unlockedIndex;
+    var isCompleted = index < unlockedIndex;
+
+    var div = document.createElement("div");
+    div.className = "lesson-item" + (isLocked ? " locked" : "") + (isCompleted ? " completed" : "");
+    
+    div.innerHTML = `
+      <div class="lesson-header" onclick="${isLocked ? '' : 'toggleAccordion(this)'}">
+        <div class="lesson-header-left">
+          <div class="lesson-num">${isCompleted ? '<i class="fa-solid fa-check"></i>' : item.num}</div>
+          <div class="lesson-title">${item.title} ${isLocked ? '<i class="fa-solid fa-lock" style="font-size:12px;margin-left:6px;color:var(--text-muted)"></i>' : ''}</div>
+        </div>
+        <i class="fa-solid fa-chevron-down lesson-toggle"></i>
+      </div>
+      <div class="lesson-body">
+        <div class="lesson-body-inner">
+          <p class="lesson-explanation">${item.content.replace(/\n/g, '<br>')}</p>
+          <div class="code-block">${escapeHtml(item.code)}</div>
+          <div class="tip-box"><strong>Tip:</strong> ${item.tip}</div>
+          ${!isCompleted ? `
+            <button class="btn-complete-chapter" onclick="completeChapter('${isHtml ? 'html' : 'css'}', ${index})">
+              <i class="fa-solid fa-seedling"></i> Complete Chapter (+50 Blooms)
+            </button>
+          ` : '<p style="color:#10b981;font-size:12px;font-weight:700;margin-top:12px;"><i class="fa-solid fa-check-circle"></i> Chapter Completed (+50 Blooms Earned)</p>'}
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// Complete Chapter & Award 50 Blooms
+function completeChapter(track, index) {
+  if (track === 'html') {
+    if (index === userProgress.htmlIndex) {
+      userProgress.htmlIndex++;
+      userProgress.blooms = (userProgress.blooms || 0) + 50;
+    }
+  } else {
+    if (index === userProgress.cssIndex) {
+      userProgress.cssIndex++;
+      userProgress.blooms = (userProgress.blooms || 0) + 50;
+    }
+  }
+
+  // Save updated data
+  localStorage.setItem('codebloom_progress', JSON.stringify(userProgress));
+
+  // Update UI
+  var bloomsEl = document.getElementById('bloomsCount');
+  if (bloomsEl) { bloomsEl.innerText = userProgress.blooms; }
+
+  renderLessons(htmlLessons, 'html-lessons');
+  renderLessons(cssLessons, 'css-lessons');
+}
 
     /* ===================================================
        CONTACT FORM
@@ -1021,6 +1341,7 @@ function showResource(type) {
         document.getElementById('loader').classList.add('hidden');
       }, 400);
     });
+    
   </script>
 </body>
 </html>
