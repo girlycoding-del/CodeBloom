@@ -271,6 +271,190 @@
 .btn-complete-chapter:hover {
   background: #059669;
 }
+/* ===== FULL-PAGE LESSON READER ===== */
+.full-page-reader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-primary, #f8f7ff);
+  z-index: 99999;
+  overflow-y: auto;
+  padding: 40px 20px;
+}
+
+.reader-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.reader-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.btn-back {
+  background: var(--bg-secondary, #ffffff);
+  border: 2px solid var(--border-color, #e2e8f0);
+  color: var(--accent-purple, #7c3aed);
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  transform: translateX(-4px);
+  background: #f3e8ff;
+}
+
+.reader-badge {
+  background: #fbcfe8;
+  color: #9d174d;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.reader-card {
+  background: var(--bg-secondary, #ffffff);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
+  border: 1px solid var(--border-color, #f3e8ff);
+}
+
+.reader-heading {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary, #1e1b4b);
+  margin-bottom: 24px;
+  border-bottom: 2px dashed #f3e8ff;
+  padding-bottom: 16px;
+}
+
+.reader-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary, #475569);
+}
+
+.reader-action-bar {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 2px dashed #f3e8ff;
+  text-align: center;
+}
+.btn-complete-chapter:hover {
+  background: #059669;
+}
+/* ===== FULL-PAGE AESTHETIC PASTEL READER ===== */
+#fullPageReader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fbf9ff; /* Soft pastel cream/lavender */
+  z-index: 99999;
+  overflow-y: auto;
+  padding: 40px 20px;
+}
+
+/* Dark mode reader background */
+body.dark #fullPageReader {
+  background-color: #0f0a1c;
+}
+
+.reader-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.reader-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.btn-back {
+  background: #ffffff;
+  border: 2px solid #e9d5ff;
+  color: #7c3aed;
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+}
+
+.btn-back:hover {
+  transform: translateX(-4px);
+  background: #f3e8ff;
+}
+
+.reader-badge {
+  background: #fbcfe8; /* Pastel pink */
+  color: #9d174d;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.reader-card {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.08);
+  border: 2px solid #f3e8ff;
+}
+
+body.dark .reader-card {
+  background: #18122b;
+  border-color: #2e1065;
+}
+
+.reader-heading {
+  font-size: 30px;
+  font-weight: 800;
+  color: #4c1d95; /* Deep pastel purple */
+  margin-bottom: 20px;
+  border-bottom: 2px dashed #f3e8ff;
+  padding-bottom: 16px;
+}
+
+body.dark .reader-heading {
+  color: #ddd6fe;
+  border-bottom-color: #2e1065;
+}
+
+.reader-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #475569;
+}
+
+body.dark .reader-text {
+  color: #cbd5e1;
+}
+
+.reader-action-bar {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 2px dashed #f3e8ff;
+  text-align: center;
+}
   </style>
 </head>
 <body>
@@ -296,23 +480,33 @@
         <a href="#resources">Resources</a>
         <a href="#contact">Contact</a>
       </div>
+      <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">CodeBloom</a>
+      <div class="nav-links">
+        <a href="#learn">Learn</a>
+        <a href="#projects">Projects</a>
+        <a href="#playground">Playground</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#certifications">Certificates</a>
+        <a href="#resources">Resources</a>
+        <a href="#contact">Contact</a>
+      </div>
       <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+        <div class="streak-badge" id="streakBadge" title="Daily Learning Streak">
+          <i class="fa-solid fa-fire"></i> <span id="streakCount">1</span>
+        </div>
+
+        <div class="blooms-badge" id="bloomsBadge" title="Blooms Earned">
+          <i class="fa-solid fa-seedling"></i> <span id="bloomsCount">0</span>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
       </div>
     </div>
-    <div class="nav-actions">
-  <div class="streak-badge" id="streakBadge" title="Daily Learning Streak">
-    <i class="fa-solid fa-fire"></i> <span id="streakCount">1</span>
-  </div>
-
-  <div class="blooms-badge" id="bloomsBadge" title="Blooms Earned">
-    <i class="fa-solid fa-seedling"></i> <span id="bloomsCount">0</span>
-  </div>
-
-  <button class="theme-toggle" id="themeToggle" title="Toggle theme">
-    <i class="fa-solid fa-moon"></i>
-  </button>
-</div>
+  </nav>
   </nav>
 
   <section class="hero">
@@ -406,18 +600,25 @@
       </div>
     </div>
   </section>
-
   <section class="section" id="quiz">
     <div class="container">
       <div class="section-label"><i class="fa-solid fa-vial"></i> Knowledge Test</div>
       <h2 class="section-title">Interactive <span class="gradient-text">Quiz</span></h2>
-      <p class="section-subtitle">Test your understanding with multiple-choice questions.</p>
 
-      <div class="quiz-card">
-        <div id="quizContainer"></div>
+      <div style="display: flex; gap: 12px; justify-content: center; margin-top: 20px; margin-bottom: 20px;">
+        <button id="btnQuizHtml" class="btn btn-primary" onclick="switchQuizTrack('html')">
+          <i class="fa-brands fa-html5"></i> HTML Quiz Track
+        </button>
+        <button id="btnQuizCss" class="btn btn-secondary" onclick="switchQuizTrack('css')">
+          <i class="fa-brands fa-css3-alt"></i> CSS Quiz Track
+        </button>
       </div>
+
+      <div class="quiz-card" id="quizCard">
+        </div>
     </div>
   </section>
+
 
   <section class="section" id="certifications" style="background:var(--bg-secondary);">
   <div class="container">
@@ -517,130 +718,238 @@
     /* ===================================================
        CURRICULUM DATA
        =================================================== */
-    var htmlLessons = [
-      {
-        num: "01",
-        title: "HTML Basics & Structure",
-        content: "HTML (HyperText Markup Language) builds the structural backbone of web pages. Standard document structure includes standard doctype declaration, html, head, and body tags.",
-        code: "<!DOCTYPE html>\n<html>\n  <head>\n    <title>My First Page</title>\n  </head>\n  <body>\n    <h1>Hello World!</h1>\n  </body>\n</html>",
-        tip: "Always close your tags properly and maintain indentation for readability."
-      },
-      {
-        num: "02",
-        title: "Headings, Paragraphs & Text Formatting",
-        content: "Use h1 through h6 for document headings. Use p tags for paragraph text, and strong or em for emphasis.",
-        code: "<h1>Main Heading</h1>\n<p>This is a <strong>bold</strong> and <em>italicized</em> sentence.</p>",
-        tip: "Only use one <h1> per page for optimal SEO structure."
-      },
-      {
-        num: "03",
-        title: "Links & Images",
-        content: "Hyperlinks use anchor <a> tags with href attributes. Images use <img> tags with src and alt text attributes.",
-        code: "<a href='https://example.com' target='_blank'>Visit Website</a>\n<img src='https://via.placeholder.com/150' alt='Sample Image'>",
-        tip: "Always provide descriptive alt text for accessibility!"
-      },
-      {
-        num: "04",
-        title: "Lists (Ordered & Unordered)",
-        content: "Unordered lists <ul> create bullet points, ordered lists <ol> create numbered items.",
-        code: "<ul>\n  <li>HTML5</li>\n  <li>CSS3</li>\n</ul>\n<ol>\n  <li>Step 1</li>\n  <li>Step 2</li>\n</ol>",
-        tip: "Lists can be nested inside each other to create multi-level menus."
-      },
-      {
-        num: "05",
-        title: "HTML Input Types (Text, Email, Password, Number, File, Date)",
-        content: "The <input> tag accepts diverse user inputs depending on the 'type' attribute.",
-        code: "<form>\n  <label>Email:</label>\n  <input type='email' placeholder='user@mail.com'>\n\n  <label>Password:</label>\n  <input type='password'>\n\n  <label>Date of Birth:</label>\n  <input type='date'>\n\n  <label>Upload File:</label>\n  <input type='file'>\n</form>",
-        tip: "Using correct input types like 'email' or 'number' provides auto-validation on smartphones!"
-      },
-      {
-        num: "06",
-        title: "Radio Buttons",
-        content: "Radio buttons allow users to select exactly ONE option from a pre-defined set. Share the same 'name' attribute across choices.",
-        code: "<p>Select Your Plan:</p>\n<input type='radio' id='free' name='plan' value='free' checked>\n<label for='free'>Free Plan</label>\n\n<input type='radio' id='pro' name='plan' value='pro'>\n<label for='pro'>Pro Plan</label>",
-        tip: "Group radio buttons using identical 'name' attributes so selecting one automatically unchecks others."
-      },
-      {
-        num: "07",
-        title: "Checkboxes",
-        content: "Checkboxes let users select multiple independent options from a list.",
-        code: "<p>Select Interests:</p>\n<input type='checkbox' id='html' name='skills' value='HTML' checked>\n<label for='html'>HTML</label>\n\n<input type='checkbox' id='css' name='skills' value='CSS'>\n<label for='css'>CSS</label>",
-        tip: "Use the 'checked' attribute to have a checkbox or radio selected by default."
-      },
-      {
-        num: "08",
-        title: "HTML Forms & Buttons",
-        content: "Forms wrap user input elements and submit them to a server.",
-        code: "<form action='#' method='POST'>\n  <label>Username:</label>\n  <input type='text' required>\n  <button type='submit'>Submit Form</button>\n</form>",
-        tip: "Always pair inputs with <label> tags for web accessibility."
-      },
-      {
-        num: "09",
-        title: "Semantic HTML Elements",
-        content: "Semantic elements clearly describe their meaning to browsers and developers (header, nav, main, section, article, footer).",
-        code: "<header>\n  <nav>Navigation Menu</nav>\n</header>\n<main>\n  <section>Content Section</section>\n</main>\n<footer>Footer Info</footer>",
-        tip: "Replacing generic <div> tags with semantic markup boosts accessibility and search rankings."
-      }
-    ];
+    /* ===================================================
+   EXPANDED, FULL-PAGE LESSON DATA WITH RICH PRO-TIPS
+   =================================================== */
 
-    var cssLessons = [
-      {
-        num: "01",
-        title: "Introduction to CSS & 3 Ways to Apply CSS",
-        content: "CSS (Cascading Style Sheets) styles HTML markup. You can apply CSS in 3 ways:\n1. Inline CSS (style attribute)\n2. Internal CSS (<style> tag in head)\n3. External CSS (<link rel='stylesheet' href='style.css'>)",
-        code: "\n<h1 style='color: purple;'>Inline Styled</h1>\n\n\n<style>\n  h1 { color: blue; }\n</style>\n\n\n<link rel='stylesheet' href='styles.css'>",
-        tip: "External CSS is the industry standard because it separates content from design and keeps files modular!"
-      },
-      {
-        num: "02",
-        title: "CSS Selectors, Classes & IDs",
-        content: "Selectors target elements. Element selectors target tags, class selectors target .classname, ID selectors target #idname.",
-        code: "/* Element Selector */\np { font-size: 16px; }\n\n/* Class Selector */\n.btn { background: purple; color: white; }\n\n/* ID Selector */\n#main-header { font-weight: bold; }",
-        tip: "Use classes for reusable styles, and IDs for unique individual elements."
-      },
-      {
-        num: "03",
-        title: "Colors, Fonts & Text Styling",
-        content: "Control typography, color palettes, background colors, alignment, and line heights.",
-        code: "body {\n  color: #333333;\n  background-color: #f4f4f9;\n  font-family: 'Inter', sans-serif;\n  line-height: 1.6;\n  text-align: center;\n}",
-        tip: "Hex colors (#7c3aed), RGB (rgb(124, 58, 237)), and HSL values are all fully supported."
-      },
-      {
-        num: "04",
-        title: "The CSS Box Model (Margin, Border, Padding, Content)",
-        content: "Every element in CSS is a rectangular box made up of Content, Padding, Border, and Margin.",
-        code: ".card {\n  width: 300px;\n  padding: 20px; /* Space inside border */\n  border: 2px solid #7c3aed;\n  margin: 30px; /* Space outside border */\n  box-sizing: border-box;\n}",
-        tip: "Always use 'box-sizing: border-box;' so padding doesn't unbalance your total calculated widths."
-      },
-      {
-        num: "05",
-        title: "CSS Layouts: Display & Positioning",
-        content: "Control layout types (block, inline, inline-block, none) and positioning modes (static, relative, absolute, fixed, sticky).",
-        code: ".sticky-header {\n  position: sticky;\n  top: 0;\n  background: white;\n}\n.hidden-box {\n  display: none;\n}",
-        tip: "Absolute positioning places elements relative to their closest positioned parent."
-      },
-      {
-        num: "06",
-        title: "CSS Flexbox Fundamentals",
-        content: "Flexbox aligns items efficiently in a 1-dimensional row or column space.",
-        code: ".container {\n  display: flex;\n  justify-content: space-between; /* Horizontal */\n  align-items: center; /* Vertical */\n  flex-direction: row;\n}",
-        tip: "Flexbox makes centering elements vertically and horizontally effortless!"
-      },
-      {
-        num: "07",
-        title: "CSS Grid Layout",
-        content: "CSS Grid handles 2-dimensional layouts (rows AND columns simultaneously).",
-        code: ".grid-container {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 20px;\n}",
-        tip: "Use 'repeat(auto-fit, minmax(250px, 1fr))' for instant responsive grids without media queries!"
-      },
-      {
-        num: "08",
-        title: "Transitions, Animations & Responsive Media Queries",
-        content: "Create smooth visual hover transitions, keyframe animations, and mobile-responsive styles.",
-        code: "/* Smooth Hover Transition */\n.btn {\n  transition: all 0.3s ease;\n}\n.btn:hover {\n  transform: translateY(-3px);\n}\n\n/* Mobile Responsive Media Query */\n@media (max-width: 768px) {\n  .container {\n    flex-direction: column;\n  }\n}",
-        tip: "Design for mobile screens first, then build up to desktop viewports."
-      }
-    ];
+var htmlLessons = [
+  {
+    num: "01",
+    title: "HTML Basics, Document Architecture & Modern Standards",
+    content: "HTML (HyperText Markup Language) is the standard backbone of all web pages. It provides structure to web content by wrapping text, images, forms, and video into semantic tags that browsers interpret.\n\n" +
+             "<h3>🏛️ Anatomical Breakdown of an HTML Document</h3>" +
+             "<p>• <strong>&lt;!DOCTYPE html&gt;</strong>: The document type declaration. It ensures the browser renders the page in HTML5 standards mode instead of legacy quirk modes.</p>" +
+             "<p>• <strong>&lt;html lang=\"en\"&gt;</strong>: The root element wrapping all document code. The <code>lang</code> attribute tells search engines and screen readers the primary language of the page.</p>" +
+             "<p>• <strong>&lt;head&gt;</strong>: Holds metadata, character encoding (UTF-8), browser viewports, titles, and external CSS links. Nothing inside the head is directly visible on the page canvas.</p>" +
+             "<p>• <strong>&lt;body&gt;</strong>: Contains all visible UI elements—headings, text paragraphs, interactive buttons, images, and embedded video players.</p>\n\n" +
+             "<h3>⚠️ Common Beginner Pitfalls</h3>" +
+             "<p>1. Forgetting to close tags (e.g., leaving a <code>&lt;p&gt;</code> tag unclosed) can cause unexpected rendering bugs in downstream layout elements.</p>" +
+             "<p>2. Nesting tags incorrectly. Elements must close in reverse order of opening: <code>&lt;p&gt;&lt;strong&gt;Text&lt;/strong&gt;&lt;/p&gt;</code>.</p>",
+    code: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My Aesthetic Space</title>\n</head>\n<body>\n  <h1>Welcome to my space</h1>\n  <p>This page is structured using clean <strong>HTML5 standards</strong>.</p>\n</body>\n</html>",
+    tip: "✨ <strong>Aesthetic Design Tip:</strong> Always set your viewport meta tag! Without <code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt;</code>, mobile devices will render your page at desktop scale, breaking responsive typography and mobile layout cards."
+  },
+  {
+    num: "02",
+    title: "Headings, Paragraphs & Text Styling Hierarchy",
+    content: "Content readability depends on clear visual hierarchy. Headings group content logically, guiding the reader's eye naturally down the page.\n\n" +
+             "<h3>📌 Heading Rules & SEO Strategy</h3>" +
+             "<p>• <strong>&lt;h1&gt;</strong>: Reserved for the main primary topic. Use <em>only one</em> H1 tag per web page for optimal Search Engine Optimization (SEO).</p>" +
+             "<p>• <strong>&lt;h2&gt; to &lt;h6&gt;</strong>: Sub-headings that organize sub-topics into structured branches.</p>" +
+             "<p>• <strong>&lt;p&gt;</strong>: Wraps narrative text paragraphs with automatic block spacing above and below.</p>\n\n" +
+             "<h3>✨ Formatting Inline Text Semantically</h3>" +
+             "<p>• Use <code>&lt;strong&gt;</code> instead of <code>&lt;b&gt;</code> to represent important text semantically.</p>" +
+             "<p>• Use <code>&lt;em&gt;</code> instead of <code>&lt;i&gt;</code> for stressed emphasis.</p>" +
+             "<p>• Use <code>&lt;mark&gt;</code> to highlight text with soft background tints.</p>",
+    code: "<h1>Crafting Digital Experiences</h1>\n<h2>1. The Art of Minimalist UI</h2>\n<p>Creating clean user interfaces requires <mark>thoughtful typography</mark> and <strong>deliberate spatial hierarchy</strong>.</p>\n<p>Every line of text should feel <em>balanced</em> and easy to digest.</p>",
+    tip: "💡 <strong>UX Tip:</strong> Avoid choosing heading levels based on font size alone! Use CSS to adjust font size and weight, while keeping heading tags strictly aligned with document structure."
+  },
+  {
+    num: "03",
+    title: "Hyperlinks, Media & Accessible Image Embeds",
+    content: "Websites are connected via hypermedia links, while images bring visual personality and warmth to user interface designs.\n\n" +
+             "<h3>🔗 Mastering Anchor Tags (&lt;a&gt;)</h3>" +
+             "<p>Anchor tags create hyperlinks to other pages, files, or external sites. Use <code>target=\"_blank\"</code> to open links in a separate tab, paired with <code>rel=\"noopener noreferrer\"</code> for security sandbox safety.</p>\n\n" +
+             "<h3>🖼️ High-Impact Image Embeds (&lt;img&gt;)</h3>" +
+             "<p>The <code>&lt;img&gt;</code> tag is a self-closing element requiring two essential attributes:</p>" +
+             "<p>1. <code>src</code>: The absolute image URL or local folder relative pathway.</p>" +
+             "<p>2. <code>alt</code>: Descriptive alternative text read aloud by screen readers and displayed if the image link fails.</p>",
+    code: "\n<a href=\"https://dribbble.com\" target=\"_blank\" rel=\"noopener noreferrer\">\n  Explore Design Inspiration\n</a>\n\n\n<img src=\"https://images.unsplash.com/photo-1518770660439-4636190af475\" \n     alt=\"A cozy workspace setup with warm pastel lighting\"\n     loading=\"lazy\">",
+    tip: "🌸 <strong>Performance Pro-Tip:</strong> Add <code>loading=\"lazy\"</code> to images below the fold! This defers image loading until the user scrolls near them, speeding up page load times significantly."
+  },
+  {
+    num: "04",
+    title: "Lists (Ordered, Unordered & Nested Menus)",
+    content: "Lists organize related content chunks, UI options, step-by-step guides, and navigation bars into scannable groups.\n\n" +
+             "<h3>📋 List Variants in HTML</h3>" +
+             "<p>• <strong>Unordered Lists (&lt;ul&gt;)</strong>: Bullet-pointed collections where item order does not convey sequential priority (e.g., feature lists, navigation menus).</p>" +
+             "<p>• <strong>Ordered Lists (&lt;ol&gt;)</strong>: Numbered collections where sequence matters (e.g., recipes, tutorial workflows).</p>" +
+             "<p>• <strong>List Items (&lt;li&gt;)</strong>: Individual content wrappers inside list parents.</p>\n\n" +
+             "<h3>🛠️ Building Nested Navigation Structure</h3>" +
+             "<p>List items can contain child lists to form multi-level dropdowns or multi-tier navigation trees.</p>",
+    code: "\n<ul>\n  <li><a href=\"#home\">Home</a></li>\n  <li>\n    <a href=\"#tracks\">Tracks</a>\n    <ul>\n      <li><a href=\"#html\">HTML5 Mastery</a></li>\n      <li><a href=\"#css\">CSS Styling</a></li>\n    </ul>\n  </li>\n  <li><a href=\"#contact\">Contact</a></li>\n</ul>",
+    tip: "🎀 <strong>CSS Customization Tip:</strong> You can remove default bullet points in CSS with <code>list-style: none;</code> and rebuild custom aesthetic bullet indicators using icons or custom markers!"
+  },
+  {
+    num: "05",
+    title: "Form Inputs (Text, Password, Email, Date, File & Validation)",
+    content: "Forms allow users to input data, register accounts, search items, and communicate with applications.\n\n" +
+             "<h3>📝 Standard Form Control Types</h3>" +
+             "<p>• <code>type=\"text\"</code>: Standard single-line input field.</p>" +
+             "<p>• <code>type=\"email\"</code>: Validates email syntax automatically upon submission.</p>" +
+             "<p>• <code>type=\"password\"</code>: Masks entered characters with dots or stars for privacy.</p>" +
+             "<p>• <code>type=\"date\"</code>: Invokes native calendar picker dialogs.</p>" +
+             "<p>• <code>type=\"file\"</code>: Opens local file system browser windows.</p>\n\n" +
+             "<h3>🏷️ Accessibility & The Power of Labels</h3>" +
+             "<p>Always pair inputs with a <code>&lt;label&gt;</code> element. Linking the label's <code>for=\"\"</code> attribute to the input's <code>id=\"\"</code> expands the clickable target area for users.</p>",
+    code: "<form>\n  <label for=\"userName\">Full Name:</label>\n  <input type=\"text\" id=\"userName\" placeholder=\"e.g. Mia Ross\" required>\n\n  <label for=\"userEmail\">Email Address:</label>\n  <input type=\"email\" id=\"userEmail\" placeholder=\"mia@design.com\" required>\n\n  <label for=\"avatar\">Profile Picture:</label>\n  <input type=\"file\" id=\"avatar\" accept=\"image/*\">\n</form>",
+    tip: "📱 <strong>Mobile Tip:</strong> Using correct input types triggers specialized smartphone keyboards (e.g., <code>type=\"email\"</code> automatically presents the `@` symbol on mobile keypads)."
+  },
+  {
+    num: "06",
+    title: "Mastering Radio Buttons & Exclusive Option Selection",
+    content: "Radio buttons allow users to choose EXACTLY ONE option from a mutually exclusive set of choices.\n\n" +
+             "<h3>🔘 How Radio Groups Function</h3>" +
+             "<p>To group multiple radio choices together, give them the exact same <code>name=\"\"</code> attribute value. Browsers automatically ensure that selecting one unselects all others in that group.</p>\n\n" +
+             "<h3>⚙️ Essential Attributes</h3>" +
+             "<p>• <code>value=\"\"</code>: The background data value submitted to the backend when chosen.</p>" +
+             "<p>• <code>checked</code>: Sets a pre-selected default choice when the page renders.</p>",
+    code: "<p>Select Your Learning Mode:</p>\n\n<input type=\"radio\" id=\"modeSelf\" name=\"learningMode\" value=\"selfPaced\" checked>\n<label for=\"modeSelf\">Self-Paced Exploration</label><br>\n\n<input type=\"radio\" id=\"modeGuided\" name=\"learningMode\" value=\"guided\">\n<label for=\"modeGuided\">Guided Mentor Track</label>",
+    tip: "✨ <strong>Aesthetic Styling Tip:</strong> Hide default radio circles with CSS using <code>appearance: none;</code> to build custom styled pills or pastel toggle buttons!"
+  },
+  {
+    num: "07",
+    title: "Mastering Checkboxes & Multi-Select Controls",
+    content: "Checkboxes let users select multiple independent options simultaneously, or toggle a single preference setting on and off.\n\n" +
+             "<h3>☑️ Checkbox Behavior vs Radio Buttons</h3>" +
+             "<p>Unlike radio buttons, checkboxes operate independently. Selecting one choice does not alter or clear other checkboxes, even if they share the same group name.</p>\n\n" +
+             "<h3>🎯 Practical Applications</h3>" +
+             "<p>• Multi-selection filters (e.g., selecting skills, tags, or search preferences).</p>" +
+             "<p>• Toggling terms of service agreement or email newsletter preferences.</p>",
+    code: "<p>Select Features to Enable:</p>\n\n<input type=\"checkbox\" id=\"prefDark\" name=\"settings\" value=\"darkMode\" checked>\n<label for=\"prefDark\">Enable Dark Palette Mode</label><br>\n\n<input type=\"checkbox\" id=\"prefNotify\" name=\"settings\" value=\"notifications\">\n<label for=\"prefNotify\">Email Daily Streak Reminders</label>",
+    tip: "💡 <strong>UX Pro-Tip:</strong> Wrap both the <code>&lt;input&gt;</code> and <code>&lt;label&gt;</code> inside a wrapper container with <code>cursor: pointer;</code> so users can click anywhere on the row to toggle the box."
+  },
+  {
+    num: "08",
+    title: "Form Submission, Actions & Textarea Controls",
+    content: "Forms combine interactive inputs into actionable payloads sent to backend databases or email endpoints.\n\n" +
+             "<h3>🚀 Form Attributes & Methods</h3>" +
+             "<p>• <code>action=\"\"</code>: Defines the target endpoint or file processing the submitted data.</p>" +
+             "<p>• <code>method=\"POST\"</code>: Encrypts payload data in the HTTP body, ideal for secure forms or long submissions.</p>" +
+             "<p>• <code>&lt;textarea&gt;</code>: Defines multi-line text input fields for extended comments or messages.</p>",
+    code: "<form action=\"/submit-feedback\" method=\"POST\">\n  <label for=\"msg\">Your Feedback:</label>\n  <textarea id=\"msg\" name=\"feedback\" rows=\"4\" placeholder=\"Type your message...\"></textarea>\n\n  <button type=\"submit\" class=\"btn\">\n    Send Payload\n  </button>\n</form>",
+    tip: "🔒 <strong>Validation Tip:</strong> Combine HTML5 native validation attributes like <code>required</code>, <code>minlength=\"5\"</code>, and <code>pattern=\"\"</code> to validate form fields client-side before submission."
+  },
+  {
+    num: "09",
+    title: "Semantic Layout Tags, Accessibility & SEO Architecture",
+    content: "Semantic elements convey explicit meaning to web browsers, search engine web crawlers, and assistive technology.\n\n" +
+             "<h3>🧱 Core Semantic Landmarks</h3>" +
+             "<p>• <code>&lt;header&gt;</code>: Houses site branding, logos, search forms, and navigation menus.</p>" +
+             "<p>• <code>&lt;nav&gt;</code>: Encloses primary site navigation links.</p>" +
+             "<p>• <code>&lt;main&gt;</code>: Holds the core, unique content of the individual page view.</p>" +
+             "<p>• <code>&lt;article&gt;</code>: Encloses self-contained, re-distributable posts or product cards.</p>" +
+             "<p>• <code>&lt;section&gt;</code>: Groups related thematic content chapters.</p>" +
+             "<p>• <code>&lt;aside&gt;</code>: Contains tangential sidebar content, callouts, or related link blocks.</p>" +
+             "<p>• <code>&lt;footer&gt;</code>: Houses copyright notices, policy links, and contact info.</p>",
+    code: "<header>\n  <nav><a href=\"/\">CodeBloom</a></nav>\n</header>\n\n<main>\n  <article>\n    <h2>Semantic HTML Rulebook</h2>\n    <p>Semantic layouts boost web accessibility score rankings.</p>\n  </article>\n</main>\n\n<footer>\n  <p>&copy; 2026 CodeBloom Studio</p>\n</footer>",
+    tip: "🌱 <strong>SEO Tip:</strong> Search engines reward clean semantic structures with better search indexing and rich snippet previews!"
+  }
+];
+
+var cssLessons = [
+  {
+    num: "01",
+    title: "Introduction to CSS, Inclusion Methods & Cascade Rules",
+    content: "CSS (Cascading Style Sheets) decorates and arranges HTML structures, controlling colors, layouts, fonts, and responsiveness.\n\n" +
+             "<h3>📦 3 Ways to Attach CSS</h3>" +
+             "<p>1. <strong>Inline CSS</strong>: Applied directly on HTML tags via the <code>style=\"\"</code> attribute. Hard to maintain; avoid except for quick tests.</p>" +
+             "<p>2. <strong>Internal CSS</strong>: Placed within a <code>&lt;style&gt;</code> block inside the document <code>&lt;head&gt;</code>.</p>" +
+             "<p>3. <strong>External CSS</strong>: Written in a standalone <code>.css</code> file linked via <code>&lt;link rel=\"stylesheet\" href=\"style.css\"&gt;</code>. Best practice for modern development.</p>\n\n" +
+             "<h3>🌊 Understanding the Cascade & Specificity</h3>" +
+             "<p>When multiple styles target the same element, CSS determines priority using rules of specificity: <em>Inline Styles > ID Selectors > Class Selectors > Element Selectors</em>.</p>",
+    code: "/* External Stylesheet: style.css */\nbody {\n  background-color: #fbf9ff;\n  color: #2e1065;\n  font-family: 'Inter', sans-serif;\n}",
+    tip: "🎨 <strong>Aesthetic Tip:</strong> Group your global styles, color variables, and typography defaults at the top of your stylesheet to keep your design system consistent."
+  },
+  {
+    num: "02",
+    title: "CSS Selectors, Classes, IDs & Pseudo-Classes",
+    content: "Selectors target specific HTML elements to apply custom visual properties.\n\n" +
+             "<h3>🎯 Selector Types Breakdown</h3>" +
+             "<p>• <strong>Element Selector</strong> (e.g., <code>p { ... }</code>): Targets all matching tags across the entire page.</p>" +
+             "<p>• <strong>Class Selector</strong> (e.g., <code>.card { ... }</code>): Reusable styling target assigned to any element using <code>class=\"card\"</code>.</p>" +
+             "<p>• <strong>ID Selector</strong> (e.g., <code>#hero { ... }</code>): Targets a single, unique HTML element using <code>id=\"hero\"</code>.</p>\n\n" +
+             "<h3>✨ Dynamic Pseudo-Classes</h3>" +
+             "<p>• <code>:hover</code>: Applies styles when a user hovers over an element.</p>" +
+             "<p>• <code>:focus</code>: Highlights interactive elements when focused via keyboard navigation.</p>",
+    code: "/* Class Styling */\n.btn-pastel {\n  background: #e9d5ff;\n  color: #5b21b6;\n  border-radius: 50px;\n  padding: 10px 24px;\n  transition: all 0.3s ease;\n}\n\n/* Pseudo-Class Interaction */\n.btn-pastel:hover {\n  background: #ddd6fe;\n  transform: translateY(-2px);\n}",
+    tip: "⚡ <strong>CSS Architecture Tip:</strong> Favor reusable classes over IDs for styling! Classes allow you to share styles cleanly across multiple elements."
+  },
+  {
+    num: "03",
+    title: "Typography, Custom Web Fonts & Soft Pastel Palettes",
+    content: "Typography and color choices set the emotional tone and aesthetic feel of your web interface.\n\n" +
+             "<h3>🎨 Modern Color Notation in CSS</h3>" +
+             "<p>• <strong>HEX Code</strong>: <code>#7c3aed</code> (Standard 6-digit hex values).</p>" +
+             "<p>• <strong>RGB / RGBA</strong>: <code>rgba(124, 58, 237, 0.1)</code> (Allows opacity control via the alpha channel).</p>" +
+             "<p>• <strong>HSL / HSLA</strong>: <code>hsl(263, 84%, 78%)</code> (Controls Hue, Saturation, Lightness).</p>\n\n" +
+             "<h3>🔤 Font Hierarchy & Line Heights</h3>" +
+             "<p>Set a clean <code>line-height</code> (e.g., <code>1.6</code> to <code>1.8</code>) on paragraph text to ensure optimal readability.</p>",
+    code: "body {\n  font-family: 'Inter', -apple-system, sans-serif;\n  color: #334155;\n  background-color: #fdf4ff; /* Soft pastel pink tint */\n}\n\nh1 {\n  color: #581c87;\n  letter-spacing: -0.5px;\n}\n\np {\n  line-height: 1.75;\n  font-size: 1.05rem;\n}",
+    tip: "🌸 <strong>Color Balance Tip:</strong> Build a cohesive soft palette using 3 main tones: Primary Base (60%), Surface Container (30%), and Soft Accent Tint (10%)."
+  },
+  {
+    num: "04",
+    title: "The CSS Box Model (Margin, Border, Padding & Content)",
+    content: "Every element on a web page is rendered as a rectangular container box composed of four distinct layers.\n\n" +
+             "<h3>📦 The 4 Layers of the Box Model</h3>" +
+             "<p>1. <strong>Content</strong>: The core text, image, or child element area.</p>" +
+             "<p>2. <strong>Padding</strong>: Clear interior space between the content and its surrounding border.</p>" +
+             "<p>3. <strong>Border</strong>: The visible frame or stroke surrounding the padding layer.</p>" +
+             "<p>4. <strong>Margin</strong>: Exterior spacing pushing adjacent neighbor elements away.</p>",
+    code: "/* Universal Box Model Reset */\n*,\n*::before,\n*::after {\n  box-sizing: border-box;\n}\n\n.card {\n  width: 100%;\n  max-width: 400px;\n  padding: 28px;              /* Internal spacing */\n  border: 2px solid #f3e8ff;  /* Frame border */\n  margin: 20px auto;          /* Centered external margin */\n}",
+    tip: "📐 <strong>Crucial Tip:</strong> Always set <code>box-sizing: border-box;</code> globally! This ensures padding and borders are included inside the set width/height of an element instead of ballooning its total size."
+  },
+  {
+    num: "05",
+    title: "Display Rules & Precision Positioning (Static, Relative, Absolute, Fixed)",
+    content: "Display rules control structural layout flow, while positioning properties allow precise element placement.\n\n" +
+             "<h3>🖥️ Display Property Values</h3>" +
+             "<p>• <code>block</code>: Takes full available row width and starts on a new line.</p>" +
+             "<p>• <code>inline</code>: Occupies only its content width and flows inline within text.</p>" +
+             "<p>• <code>inline-block</code>: Flows inline while accepting custom width and padding values.</p>\n\n" +
+             "<h3>📍 CSS Positioning Matrix</h3>" +
+             "<p>• <code>static</code>: Default document layout flow.</p>" +
+             "<p>• <code>relative</code>: Offsets relative to its normal position without altering surrounding elements.</p>" +
+             "<p>• <code>absolute</code>: Positions relative to its nearest non-static parent container.</p>" +
+             "<p>• <code>fixed</code>: Pins the element relative to the browser window viewport during scrolling.</p>",
+    code: ".card-container {\n  position: relative; /* Parent anchor */\n  padding: 30px;\n}\n\n.badge-top-right {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  background: #fbcfe8;\n  padding: 4px 12px;\n  border-radius: 20px;\n}",
+    tip: "📌 <strong>Layout Tip:</strong> When using <code>position: absolute</code> on a child element, always ensure the parent container is set to <code>position: relative</code> so the child anchors correctly inside it!"
+  },
+  {
+    num: "06",
+    title: "CSS Flexbox (1D Alignment & Centering)",
+    content: "Flexbox (Flexible Box Layout) arranges elements along a single row or column axis, automatically distributing extra space.\n\n" +
+             "<h3>↕️ Primary Flexbox Container Controls</h3>" +
+             "<p>• <code>display: flex;</code>: Activates flex context on parent elements.</p>" +
+             "<p>• <code>justify-content</code>: Aligns flex items along the primary horizontal axis (<code>flex-start</code>, <code>center</code>, <code>space-between</code>, <code>space-around</code>).</p>" +
+             "<p>• <code>align-items</code>: Aligns flex items vertically along the cross axis (<code>center</code>, <code>stretch</code>, <code>flex-end</code>).</p>" +
+             "<p>• <code>gap</code>: Defines space between child items without requiring manual margins.</p>",
+    code: "/* Effortless Perfect Centering */\n.hero-wrapper {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 60vh;\n  gap: 24px;\n}",
+    tip: "✨ <strong>Flexbox Pro-Tip:</strong> Flexbox makes centering items simple! Setting <code>display: flex; justify-content: center; align-items: center;</code> on a parent container perfectly centers its children horizontally and vertically."
+  },
+  {
+    num: "07",
+    title: "CSS Grid Layout (2D Layout Systems & Cards)",
+    content: "CSS Grid manages complex 2-dimensional layouts controlling rows AND columns simultaneously.\n\n" +
+             "<h3>🧱 Essential Grid Properties</h3>" +
+             "<p>• <code>display: grid;</code>: Enables two-dimensional grid context on a parent element.</p>" +
+             "<p>• <code>grid-template-columns</code>: Defines column layout structure using fractional units (<code>fr</code>) or pixel tracks.</p>" +
+             "<p>• <code>gap</code>: Defines vertical and horizontal gutter spacing between grid cells.</p>",
+    code: "/* Modern Auto-Responsive Card Grid */\n.card-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n  gap: 24px;\n}",
+    tip: "🪄 <strong>Magic Grid Formula:</strong> Using <code>grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));</code> automatically wraps grid items onto new lines as screen sizes shrink without requiring custom media queries!"
+  },
+  {
+    num: "08",
+    title: "Transitions, Hover Micro-Interactions & Mobile Responsiveness",
+    content: "Adding smooth transitions and adaptive mobile breakpoints turns static web pages into fluid, interactive experiences.\n\n" +
+             "<h3>✨ Micro-Interactions with CSS Transitions</h3>" +
+             "<p>Smoothly animate state changes (like hover states) by defining target properties, duration, and timing curves with <code>transition</code>.</p>\n\n" +
+             "<h3>📱 Media Queries & Responsive Design</h3>" +
+             "<p>Use <code>@media</code> rules to apply custom CSS properties conditionally based on device viewport sizes.</p>",
+    code: "/* Interactive Card Hover Transition */\n.pastel-card {\n  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;\n}\n\n.pastel-card:hover {\n  transform: translateY(-6px);\n  box-shadow: 0 20px 30px rgba(124, 58, 237, 0.12);\n}\n\n/* Mobile Responsive Breakpoint */\n@media (max-width: 768px) {\n  .reader-card {\n    padding: 20px;\n    border-radius: 20px;\n  }\n}",
+    tip: "🌸 <strong>Animation Tip:</strong> Animate transform properties (e.g., <code>transform: translateY()</code> or <code>scale()</code>) and <code>opacity</code> for high-performance, 60fps animations!"
+  }
+];
 
     var projectsData = [
       {
@@ -692,46 +1001,221 @@
       }
     ];
 
-    var quizQuestions = [
-      {
-        q: "Which tag is used to create a Radio Button in HTML?",
-        options: ["<input type='checkbox'>", "<input type='radio'>", "<button type='radio'>", "<select type='radio'>"],
-        answer: 1
-      },
-      {
-        q: "Which attribute groups radio buttons together so only ONE can be chosen?",
-        options: ["group", "id", "name", "value"],
-        answer: 2
-      },
-      {
-        q: "How do you link an External CSS stylesheet file to an HTML document?",
-        options: ["<style src='style.css'>", "<link rel='stylesheet' href='style.css'>", "<script href='style.css'>", "<css file='style.css'>"],
-        answer: 1
-      },
-      {
-        q: "Which CSS property controls the inner spacing inside an element's border?",
-        options: ["margin", "padding", "border-spacing", "gap"],
-        answer: 1
-      },
-      {
-        q: "What is the correct tag for making multi-choice select boxes where multiple items can be checked?",
-        options: ["<input type='radio'>", "<input type='checkbox'>", "<check>", "<input type='multi'>"],
-        answer: 1
-      },
-      {
-        q: "Which flexbox property aligns items along the primary horizontal axis?",
-        options: ["align-items", "justify-content", "flex-direction", "grid-gap"],
-        answer: 1
-      }
+/* ===================================================
+       HTML & CSS QUIZ SYSTEM (WITH BLOOM DEDUCTION)
+       =================================================== */
+    var htmlQuizQuestions = [
+      { q: "What does HTML stand for?", options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language", "Hyper Tool Multi Language"], answer: 0 },
+      { q: "Which tag is used to define the root of an HTML document?", options: ["<head>", "<body>", "<html>", "<doctype>"], answer: 2 },
+      { q: "What is the correct HTML element for inserting a line break?", options: ["<break>", "<lb>", "<br>", "<line>"], answer: 2 },
+      { q: "Which HTML attribute specifies alternate text for an image?", options: ["title", "src", "alt", "description"], answer: 2 },
+      { q: "Which tag is used to create a numbered list in HTML?", options: ["<ul>", "<ol>", "<li>", "<dl>"], answer: 1 },
+      { q: "Which HTML tag is used to define an interactive form input?", options: ["<input>", "<formfield>", "<entry>", "<textbox>"], answer: 0 },
+      { q: "Which HTML input type lets a user select ONLY ONE option from a group?", options: ["type=\"checkbox\"", "type=\"radio\"", "type=\"text\"", "type=\"select\""], answer: 1 },
+      { q: "Which HTML input type lets a user select MULTIPLE choices?", options: ["type=\"checkbox\"", "type=\"radio\"", "type=\"button\"", "type=\"multiple\""], answer: 0 },
+      { q: "Which HTML semantic tag is used for navigation links?", options: ["<nav>", "<links>", "<menu>", "<header>"], answer: 0 },
+      { q: "How do you open a link in a new tab/window in HTML?", options: ["target=\"_blank\"", "target=\"new\"", "window=\"blank\"", "open=\"newtab\""], answer: 0 }
     ];
+
+    var cssQuizQuestions = [
+      { q: "What does CSS stand for?", options: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style System", "Colorful Style Sheets"], answer: 1 },
+      { q: "Which HTML tag is used to define an internal style sheet?", options: ["<css>", "<script>", "<style>", "<design>"], answer: 2 },
+      { q: "Which CSS property is used to change the background color?", options: ["color", "background-color", "bgcolor", "canvas-color"], answer: 1 },
+      { q: "How do you select an element with id 'header' in CSS?", options: [".header", "#header", "header", "*header"], answer: 1 },
+      { q: "What is the correct CSS syntax to make all <p> elements bold?", options: ["p {text-size: bold;}", "p {font-weight: bold;}", "p {style: bold;}", "<p style='bold'>"], answer: 1 },
+      { q: "Which property is used to change the font of an element?", options: ["font-family", "font-style", "text-type", "typeface"], answer: 0 },
+      { q: "In CSS Flexbox, which property aligns items along the main axis?", options: ["align-items", "justify-content", "flex-direction", "align-content"], answer: 1 },
+      { q: "Which CSS property controls the text size?", options: ["text-style", "font-size", "text-size", "font-height"], answer: 1 },
+      { q: "What is the default value of the position property in CSS?", options: ["relative", "fixed", "absolute", "static"], answer: 3 },
+      { q: "Which CSS property creates space OUTSIDE an element's border?", options: ["padding", "spacing", "margin", "border-spacing"], answer: 2}
+      ];
+      /* ===================================================
+   QUIZ SYSTEM (SINGLE CLEAN VERSION)
+   =================================================== */
+var activeQuizTrack = 'html';
+var currentQuestion = 0;
+var userScore = 0;
+
+function switchQuizTrack(track) {
+  activeQuizTrack = track;
+  currentQuestion = 0;
+  userScore = 0;
+
+  var btnHtml = document.getElementById("btnQuizHtml");
+  var btnCss = document.getElementById("btnQuizCss");
+  if (btnHtml && btnCss) {
+    btnHtml.className = track === 'html' ? "btn btn-primary" : "btn btn-secondary";
+    btnCss.className = track === 'css' ? "btn btn-primary" : "btn btn-secondary";
+  }
+  renderQuiz();
+}
+
+function getActiveQuiz() {
+  return activeQuizTrack === 'html' ? htmlQuizQuestions : cssQuizQuestions;
+}
+
+function renderQuiz() {
+  var container = document.getElementById("quizCard");
+  if (!container) return;
+
+  var questions = getActiveQuiz();
+
+  if (currentQuestion >= questions.length) {
+    var pass = userScore >= Math.ceil(questions.length * 0.7);
+    container.innerHTML = `
+      <div style="text-align:center; padding: 20px;">
+        <h2 style="font-size:24px; color:var(--text-primary); margin-bottom:12px;">
+          ${pass ? '🎉 Quiz Completed!' : '💪 Keep Practicing!'}
+        </h2>
+        <p style="font-size:16px; color:var(--text-secondary); margin-bottom:20px;">
+          You scored <strong>${userScore}</strong> out of <strong>${questions.length}</strong> on the <strong>${activeQuizTrack.toUpperCase()} Quiz</strong>!
+        </p>
+        <button class="btn btn-primary" onclick="restartQuiz()">
+          <i class="fa-solid fa-rotate-right"></i> Retake ${activeQuizTrack.toUpperCase()} Quiz
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  var q = questions[currentQuestion];
+  var optsHtml = "";
+  q.options.forEach(function(opt, idx) {
+    optsHtml += `
+      <div class="quiz-option" onclick="selectOption(${idx})">
+        ${opt}
+      </div>
+    `;
+  });
+
+  container.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <span class="reader-badge" style="text-transform:uppercase;">${activeQuizTrack.toUpperCase()} QUIZ</span>
+      <span style="font-size:14px; font-weight:700; color:var(--accent-purple);">Question ${currentQuestion + 1} of ${questions.length}</span>
+    </div>
+    <h3 style="font-size:18px; margin-bottom:20px; color:var(--text-primary);">${q.q}</h3>
+    <div>${optsHtml}</div>
+  `;
+}
+
+function selectOption(index) {
+  var questions = getActiveQuiz();
+  var q = questions[currentQuestion];
+  if (q.answer === index || q.ans === index) {
+    userScore++;
+    if (typeof addBlooms === 'function') {
+      addBlooms(20, "Correct Quiz Answer");
+    }
+  }
+  currentQuestion++;
+  renderQuiz();
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  userScore = 0;
+  renderQuiz();
+}
+/* ===================================================
+   HTML & CSS QUIZ SYSTEM (CLEAN & WORKING)
+   =================================================== */
+var activeQuizTrack = 'html';
+var currentQuestion = 0;
+var userScore = 0;
+
+function switchQuizTrack(track) {
+  activeQuizTrack = track;
+  currentQuestion = 0;
+  userScore = 0;
+
+  var btnHtml = document.getElementById("btnQuizHtml");
+  var btnCss = document.getElementById("btnQuizCss");
+
+  if (btnHtml && btnCss) {
+    btnHtml.className = track === 'html' ? "btn btn-primary" : "btn btn-secondary";
+    btnCss.className = track === 'css' ? "btn btn-primary" : "btn btn-secondary";
+  }
+
+  renderQuiz();
+}
+
+function getActiveQuiz() {
+  return activeQuizTrack === 'html' ? htmlQuizQuestions : cssQuizQuestions;
+}
+
+function renderQuiz() {
+  var container = document.getElementById("quizCard");
+  if (!container) return;
+
+  var questions = getActiveQuiz();
+
+  if (currentQuestion >= questions.length) {
+    var pass = userScore >= Math.ceil(questions.length * 0.7);
+    container.innerHTML = `
+      <div style="text-align:center; padding: 20px;">
+        <h2 style="font-size:24px; color:var(--text-primary); margin-bottom:12px;">
+          ${pass ? '🎉 Congratulations!' : '💪 Keep Practicing!'}
+        </h2>
+        <p style="font-size:16px; color:var(--text-secondary); margin-bottom:20px;">
+          You scored <strong>${userScore}</strong> out of <strong>${questions.length}</strong> on the <strong>${activeQuizTrack.toUpperCase()} Quiz</strong>!
+        </p>
+        <button class="btn btn-primary" onclick="restartQuiz()">
+          <i class="fa-solid fa-rotate-right"></i> Retake ${activeQuizTrack.toUpperCase()} Quiz
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  var q = questions[currentQuestion];
+  var html = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <span class="reader-badge" style="text-transform:uppercase;">${activeQuizTrack.toUpperCase()} QUIZ</span>
+      <span style="font-size:14px; font-weight:700; color:var(--accent-purple);">Question ${currentQuestion + 1} of ${questions.length}</span>
+    </div>
+    <h3 style="font-size:18px; margin-bottom:20px; color:var(--text-primary);">${q.q}</h3>
+    <div class="quiz-options">
+  `;
+
+  q.options.forEach(function(opt, idx) {
+    html += `
+      <div class="quiz-option" onclick="selectOption(${idx})">
+        ${opt}
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+function selectOption(index) {
+  var questions = getActiveQuiz();
+  if (questions[currentQuestion].answer === index || questions[currentQuestion].ans === index) {
+    userScore++;
+    if (typeof addBlooms === 'function') {
+      addBlooms(20, "Correct Quiz Answer");
+    }
+  }
+  currentQuestion++;
+  renderQuiz();
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  userScore = 0;
+  renderQuiz();
+}
 
     /* ===================================================
        RENDER FUNCTIONS
        =================================================== */
 // PASTE THIS NEW CODE HERE:
-var userProgress = { htmlIndex: 0, cssIndex: 0, blooms: 0 };
+  
+  var userProgress = { htmlIndex: 0, cssIndex: 0, blooms: 0 };
+
 try {
-  var saved = localStorage.getItem('codebloom_progress');
+  var saved = localStorage.getItem('codebloom_progress_v2');
   if (saved) { userProgress = JSON.parse(saved); }
 } catch(e) {}
 
@@ -740,33 +1224,115 @@ function updateStreak() {
   var today = new Date().toDateString();
   var streak = parseInt(localStorage.getItem('codebloom_streak') || '1');
 
-  if (lastVisit) {
-    if (lastVisit !== today) {
-      var lastDate = new Date(lastVisit);
-      var currentDate = new Date(today);
-      var diffTime = Math.abs(currentDate - lastDate);
-      var diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+  if (lastVisit && lastVisit !== today) {
+    var lastDate = new Date(lastVisit);
+    var currentDate = new Date(today);
+    var diffTime = Math.abs(currentDate - lastDate);
+    var diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
 
-      if (diffDays === 1) {
-        streak += 1; // Unbroken streak!
-      } else if (diffDays > 1) {
-        streak = 1;  // Missed a day, reset streak
-      }
-      localStorage.setItem('codebloom_last_date', today);
-      localStorage.setItem('codebloom_streak', streak);
-    }
-  } else {
-    // Brand new user
+    if (diffDays === 1) { streak += 1; }
+    else if (diffDays > 1) { streak = 1; }
+    
+    localStorage.setItem('codebloom_last_date', today);
+    localStorage.setItem('codebloom_streak', streak);
+  } else if (!lastVisit) {
     localStorage.setItem('codebloom_last_date', today);
     localStorage.setItem('codebloom_streak', '1');
   }
 
-  // Update UI badge
   var streakEl = document.getElementById('streakCount');
   if (streakEl) { streakEl.innerText = streak; }
 
   var bloomsEl = document.getElementById('bloomsCount');
   if (bloomsEl) { bloomsEl.innerText = userProgress.blooms || 0; }
+}
+
+function addBlooms(points, reason) {
+  userProgress.blooms = (userProgress.blooms || 0) + points;
+  saveProgress();
+  
+  var countEl = document.getElementById('bloomsCount');
+  if (countEl) { countEl.innerText = userProgress.blooms; }
+  
+  showToast("+" + points + " Blooms Earned! (" + reason + ")");
+}
+
+function saveProgress() {
+  localStorage.setItem('codebloom_progress_v2', JSON.stringify(userProgress));
+}
+
+function completeChapter(track, index) {
+  var isHtml = track === 'html';
+  var currentIndex = isHtml ? userProgress.htmlIndex : userProgress.cssIndex;
+
+  if (index === currentIndex) {
+    if (isHtml) { userProgress.htmlIndex++; }
+    else { userProgress.cssIndex++; }
+
+    addBlooms(100, "Chapter Completed");
+
+    renderLessons(htmlLessons, 'html-lessons');
+    renderLessons(cssLessons, 'css-lessons');
+  }
+}
+
+/* ===== FULL-PAGE LESSON READER FUNCTIONS ===== */
+function openFullPageLesson(track, index) {
+  var lessons = (track === 'html') ? htmlLessons : cssLessons;
+  var item = lessons[index];
+  if (!item) return;
+
+  // Set track badge and chapter title
+  document.getElementById("readerTrackBadge").innerText = track.toUpperCase() + " • CHAPTER " + item.num;
+  document.getElementById("readerTitle").innerText = item.title;
+
+  // Build the full lesson content
+  var contentHtml = `
+    <div style="margin-bottom: 24px; font-size: 16px; line-height: 1.8;">
+      ${item.content ? item.content.replace(/\n/g, '<br>') : ''}
+    </div>
+
+    ${item.code ? `
+      <div style="margin: 24px 0;">
+        <h3 style="font-size: 15px; color: var(--accent-purple); margin-bottom: 10px;">
+          <i class="fa-solid fa-code"></i> Interactive Example Code:
+        </h3>
+        <pre class="code-block" style="padding: 20px; border-radius: 16px; font-size: 14px; overflow-x: auto;"><code>${escapeHtml(item.code)}</code></pre>
+      </div>
+    ` : ''}
+
+    ${item.tip ? `
+      <div class="tip-box" style="margin-top: 24px;">
+        <strong>✨ Aesthetic Pro-Tip:</strong> ${item.tip}
+      </div>
+    ` : ''}
+  `;
+
+  document.getElementById("readerContent").innerHTML = contentHtml;
+
+  // Attach completion button action
+  var btnComplete = document.getElementById("btnCompleteFullLesson");
+  if (btnComplete) {
+    btnComplete.onclick = function() {
+      completeChapter(track, index);
+      closeFullPageReader();
+    };
+  }
+
+  // Show full page reader view
+  var reader = document.getElementById("fullPageReader");
+  if (reader) {
+    reader.style.display = "block";
+    document.body.style.overflow = "hidden"; // Stop background page from scrolling
+  }
+}
+
+function closeFullPageReader() {
+  var reader = document.getElementById("fullPageReader");
+  if (reader) {
+    reader.style.display = "none";
+    document.body.style.overflow = "auto"; // Re-enable background scrolling
+  }
 }
 
 function renderLessons(lessons, targetId) {
@@ -780,326 +1346,209 @@ function renderLessons(lessons, targetId) {
   lessons.forEach(function(item, index) {
     var isLocked = index > unlockedIndex;
     var isCompleted = index < unlockedIndex;
+    var isCurrent = index === unlockedIndex;
 
     var div = document.createElement("div");
-    div.className = "lesson-item" + (isLocked ? " locked" : "") + (isCompleted ? " completed" : "");
-    
+    div.className = "lesson-item" + (isLocked ? " locked" : "") + (isCompleted ? " completed" : "") + (isCurrent ? " active-chapter" : "");
+
+    // Click opens full-page lesson reader instead of accordion dropdown
     div.innerHTML = `
-      <div class="lesson-header" onclick="${isLocked ? '' : 'toggleAccordion(this)'}">
+      <div class="lesson-header" onclick="${isLocked ? "showLockedMessage()" : "openFullPageLesson('" + (isHtml ? "html" : "css") + "', " + index + ")"}">
         <div class="lesson-header-left">
-          <div class="lesson-num">${isCompleted ? '<i class="fa-solid fa-check"></i>' : item.num}</div>
-          <div class="lesson-title">${item.title} ${isLocked ? '<i class="fa-solid fa-lock" style="font-size:12px;margin-left:6px;color:var(--text-muted)"></i>' : ''}</div>
+          <div class="lesson-num">${isCompleted ? '<i class="fa-solid fa-check"></i>' : (isLocked ? '<i class="fa-solid fa-lock"></i>' : item.num)}</div>
+          <div class="lesson-title">${item.title} ${isLocked ? '<span style="font-size:11px; margin-left:6px; color:var(--text-muted);">(Locked)</span>' : ''}</div>
         </div>
-        <i class="fa-solid fa-chevron-down lesson-toggle"></i>
-      </div>
-      <div class="lesson-body">
-        <div class="lesson-body-inner">
-          <p class="lesson-explanation">${item.content.replace(/\n/g, '<br>')}</p>
-          <div class="code-block">${escapeHtml(item.code)}</div>
-          <div class="tip-box"><strong>Tip:</strong> ${item.tip}</div>
-          ${!isCompleted ? `
-            <button class="btn-complete-chapter" onclick="completeChapter('${isHtml ? 'html' : 'css'}', ${index})">
-              <i class="fa-solid fa-seedling"></i> Complete Chapter (+50 Blooms)
-            </button>
-          ` : '<p style="color:#10b981;font-size:12px;font-weight:700;margin-top:12px;"><i class="fa-solid fa-check-circle"></i> Chapter Completed (+50 Blooms Earned)</p>'}
-        </div>
+        <i class="fa-solid fa-book-open lesson-toggle"></i>
       </div>
     `;
     container.appendChild(div);
   });
 }
 
-function completeChapter(track, index) {
-  if (track === 'html') {
-    if (index === userProgress.htmlIndex) {
-      userProgress.htmlIndex++;
-      userProgress.blooms = (userProgress.blooms || 0) + 50;
-    }
-  } else {
-    if (index === userProgress.cssIndex) {
-      userProgress.cssIndex++;
-      userProgress.blooms = (userProgress.blooms || 0) + 50;
-    }
-  }
-
-  localStorage.setItem('codebloom_progress', JSON.stringify(userProgress));
-
-  var bloomsEl = document.getElementById('bloomsCount');
-  if (bloomsEl) { bloomsEl.innerText = userProgress.blooms; }
-
-  renderLessons(htmlLessons, 'html-lessons');
-  renderLessons(cssLessons, 'css-lessons');
+function showLockedMessage() {
+  showToast("🔒 Complete the previous chapter first to unlock this lesson!");
 }
 
-    function renderProjects() {
-      var grid = document.getElementById("projects-grid");
-      grid.innerHTML = "";
-      projectsData.forEach(function(p) {
-        var card = document.createElement("div");
-        card.className = "glass-card project-card";
-        card.innerHTML = `
-          <div>
-            <h3>${p.title}</h3>
-            <p>${p.desc}</p>
-          </div>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('${p.id}')"><i class="fa-solid fa-list-check"></i> View Steps & Hints</button>
-        `;
-        grid.appendChild(card);
-      });
-    }
+function showToast(msg) {
+  var toast = document.createElement("div");
+  toast.style.cssText = "position:fixed;bottom:20px;right:20px;background:#7c3aed;color:#fff;padding:12px 20px;border-radius:12px;font-size:14px;font-weight:600;z-index:99999;box-shadow:0 10px 30px rgba(0,0,0,0.3);transition:all 0.3s ease;opacity:0;transform:translateY(10px);";
+  toast.innerText = msg;
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.style.opacity = "1"; toast.style.transform = "translateY(0)"; }, 50);
+  setTimeout(function() {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(10px)";
+    setTimeout(function() { toast.remove(); }, 300);
+  }, 3000);
+}
 
-    function toggleAccordion(header) {
-      var item = header.parentElement;
-      var isOpen = item.classList.contains("open");
-      document.querySelectorAll(".lesson-item").forEach(el => {
-        el.classList.remove("open");
-        el.querySelector(".lesson-body").style.maxHeight = null;
-      });
-      if (!isOpen) {
-        item.classList.add("open");
-        var body = item.querySelector(".lesson-body");
-        body.style.maxHeight = body.scrollHeight + "px";
-      }
-    }
+function renderProjects() {
+  var grid = document.getElementById("projects-grid");
+  if (!grid) return;
+  grid.innerHTML = "";
+  projectsData.forEach(function(p) {
+    var card = document.createElement("div");
+    card.className = "glass-card project-card";
+    card.innerHTML = `
+      <div>
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="openModal('${p.id}')"><i class="fa-solid fa-list-check"></i> View Steps & Hints</button>
+    `;
+    grid.appendChild(card);
+  });
+}
 
-    function switchTab(track) {
-      document.querySelectorAll(".learn-tab").forEach(t => t.classList.remove("active"));
-      document.querySelectorAll(".learn-panel").forEach(p => p.classList.remove("active"));
-      if (track === 'html') {
-        event.target.classList.add("active");
-        document.getElementById("html-panel").classList.add("active");
-      } else {
-        event.target.classList.add("active");
-        document.getElementById("css-panel").classList.add("active");
-      }
-    }
-
-    /* ===================================================
-       PROJECT MODAL STEPS & HINTS
-       =================================================== */
-    function openModal(projectId) {
-      var proj = projectsData.find(p => p.id === projectId);
-      if (!proj) return;
-      document.getElementById("mTitle").innerText = proj.title;
-      var html = "";
-      proj.steps.forEach((step, idx) => {
-        html += `<div class="modal-step"><h4>Step ${idx + 1}</h4><p>${step}</p></div>`;
-      });
-      html += `<div class="tip-box" style="margin-top:15px;"><strong>Useful Hint:</strong> ${proj.hints}</div>`;
-      document.getElementById("mBody").innerHTML = html;
-      document.getElementById("projectModal").classList.add("active");
-    }
-
-    function closeModal() {
-      document.getElementById("projectModal").classList.remove("active");
-    }
-
-    /* ===================================================
-       PLAYGROUND
-       =================================================== */
-    function runCode() {
-      var code = document.getElementById("playgroundCode").value;
-      var iframe = document.getElementById("playgroundFrame");
-      var doc = iframe.contentDocument || iframe.contentWindow.document;
-      doc.open();
-      doc.write(code);
-      doc.close();
-    }
-
-    /* ===================================================
-       QUIZ SYSTEM
-       =================================================== */
-    var currentQIndex = 0;
-    var userScore = 0;
-
-    function renderQuiz() {
-      var q = quizQuestions[currentQIndex];
-      var container = document.getElementById("quizContainer");
-      if (currentQIndex >= quizQuestions.length) {
-        container.innerHTML = `
-          <div style="text-align:center;">
-            <h3 style="font-size:22px;">Quiz Completed!</h3>
-            <p style="font-size:18px;margin:15px 0;">Your Score: <strong>${userScore} / ${quizQuestions.length}</strong></p>
-            <button class="btn btn-primary btn-sm" onclick="restartQuiz()">Try Again</button>
-          </div>
-        `;
-        return;
-      }
-
-      var optsHtml = "";
-      q.options.forEach((opt, idx) => {
-        optsHtml += `<div class="quiz-option" onclick="selectAnswer(${idx})">${opt}</div>`;
-      });
-
-      container.innerHTML = `
-        <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">Question ${currentQIndex + 1} of ${quizQuestions.length}</div>
-        <h3 style="font-size:17px;margin-bottom:18px;">${q.q}</h3>
-        <div>${optsHtml}</div>
-      `;
-    }
-
-    function selectAnswer(index) {
-      if (index === quizQuestions[currentQIndex].answer) {
-        userScore++;
-      }
-      currentQIndex++;
-      renderQuiz();
-    }
-
-    function restartQuiz() {
-      currentQIndex = 0;
-      userScore = 0;
-      renderQuiz();
-    }
-    /* ===================================================
-   EXPANDED QUIZ QUESTIONS (25 QUESTIONS)
-   =================================================== */
-var quizQuestions = [
-  {
-    q: "Which tag is used to create a Radio Button in HTML?",
-    options: ["<input type='checkbox'>", "<input type='radio'>", "<button type='radio'>", "<select type='radio'>"],
-    answer: 1
-  },
-  {
-    q: "Which attribute groups radio buttons together so only ONE can be chosen at a time?",
-    options: ["group", "id", "name", "value"],
-    answer: 2
-  },
-  {
-    q: "How do you link an External CSS stylesheet file to an HTML document?",
-    options: ["<style src='style.css'>", "<link rel='stylesheet' href='style.css'>", "<script href='style.css'>", "<css file='style.css'>"],
-    answer: 1
-  },
-  {
-    q: "Which CSS property controls the inner spacing inside an element's border?",
-    options: ["margin", "padding", "border-spacing", "gap"],
-    answer: 1
-  },
-  {
-    q: "Which input type allows users to select multiple independent options from a list?",
-    options: ["<input type='radio'>", "<input type='checkbox'>", "<input type='multi'>", "<input type='select'>"],
-    answer: 1
-  },
-  {
-    q: "Which Flexbox property aligns flex items along the main horizontal axis?",
-    options: ["align-items", "justify-content", "flex-direction", "grid-gap"],
-    answer: 1
-  },
-  {
-    q: "Where in the HTML document is the correct place to put internal CSS using the <style> tag?",
-    options: ["In the <body> section", "In the <head> section", "At the very end of </html>", "Inside a <footer> tag"],
-    answer: 1
-  },
-  {
-    q: "Which attribute is used to make an HTML input field mandatory before form submission?",
-    options: ["validate", "important", "required", "mandatory"],
-    answer: 2
-  },
-  {
-    q: "What is the correct HTML element for the largest top-level heading?",
-    options: ["<heading>", "<h6>", "<head>", "<h1>"],
-    answer: 3
-  },
-  {
-    q: "Which HTML input type provides built-in mobile keyboard optimization for entering web addresses?",
-    options: ["type='web'", "type='url'", "type='link'", "type='text'"],
-    answer: 1
-  },
-  {
-    q: "In the CSS Box Model, which layer is outermost?",
-    options: ["Padding", "Border", "Margin", "Content"],
-    answer: 2
-  },
-  {
-    q: "What CSS property ensures padding and border widths do NOT increase an element's calculated total size?",
-    options: ["box-sizing: border-box;", "box-sizing: content-box;", "display: inline-block;", "position: relative;"],
-    answer: 0
-  },
-  {
-    q: "Which HTML attribute is paired with a <label> to connect it to an input's 'id'?",
-    options: ["name", "for", "target", "link"],
-    answer: 1
-  },
-  {
-    q: "Which CSS display value enables 2-dimensional row AND column layouts simultaneously?",
-    options: ["display: flex;", "display: block;", "display: grid;", "display: inline;"],
-    answer: 2
-  },
-  {
-    q: "How do you select an element with the ID 'main-header' in CSS?",
-    options: [".main-header", "#main-header", "*main-header", "header#main"],
-    answer: 1
-  },
-  {
-    q: "Which CSS property changes the text color of an element?",
-    options: ["text-color", "font-color", "color", "background-color"],
-    answer: 2
-  },
-  {
-    q: "What does the HTML 'checked' attribute do when added to a radio button or checkbox?",
-    options: ["Disables the button", "Makes it pre-selected by default", "Hides it", "Makes it mandatory"],
-    answer: 1
-  },
-  {
-    q: "Which element is a Semantic HTML container used for major navigation links?",
-    options: ["<menu>", "<nav>", "<header>", "<section>"],
-    answer: 1
-  },
-  {
-    q: "Which CSS position value keeps an element fixed in place relative to the viewport during scrolling?",
-    options: ["position: relative;", "position: absolute;", "position: fixed;", "position: static;"],
-    answer: 2
-  },
-  {
-    q: "Which CSS rule is used to apply styles conditionally based on screen size (for mobile responsiveness)?",
-    options: ["@keyframes", "@media", "@supports", "@import"],
-    answer: 1
-  },
-  {
-    q: "Which HTML tag is used to create a drop-down list?",
-    options: ["<input type='dropdown'>", "<select>", "<list>", "<option>"],
-    answer: 1
-  },
-  {
-    q: "How do you select all <p> elements inside a element with class 'card' in CSS?",
-    options: [".card + p", ".card > p or .card p", "#card p", "p.card"],
-    answer: 1
-  },
-  {
-    q: "Which attribute opens an anchor <a> hyperlink in a brand new browser tab?",
-    options: ["target='_blank'", "target='_new'", "open='new'", "window='blank'"],
-    answer: 0
-  },
-  {
-    q: "Which CSS property is used to add smooth animated changes between state transitions (e.g. hover)?",
-    options: ["transform", "animation-delay", "transition", "hover-effect"],
-    answer: 2
-  },
-  {
-    q: "What is the correct HTML input type for choosing colors using a system color-picker?",
-    options: ["<input type='picker'>", "<input type='color'>", "<input type='palette'>", "<input type='style'>"],
-    answer: 1
+function toggleAccordion(header) {
+  var item = header.parentElement;
+  var isOpen = item.classList.contains("open");
+  document.querySelectorAll(".lesson-item").forEach(function(el) {
+    el.classList.remove("open");
+    var body = el.querySelector(".lesson-body");
+    if (body) body.style.maxHeight = null;
+  });
+  if (!isOpen) {
+    item.classList.add("open");
+    var body = item.querySelector(".lesson-body");
+    if (body) body.style.maxHeight = body.scrollHeight + "px";
   }
-];
+}
 
-    
-    /* ===================================================
-   UPDATED CERTIFICATE LOGIC
-   Unlocks certificate only after completing the quiz/course
-   =================================================== */
+function switchTab(track) {
+  document.querySelectorAll(".learn-tab").forEach(function(t) { t.classList.remove("active"); });
+  document.querySelectorAll(".learn-panel").forEach(function(p) { p.classList.remove("active"); });
+  if (track === 'html') {
+    if (event && event.target) event.target.classList.add("active");
+    document.getElementById("html-panel").classList.add("active");
+  } else {
+    if (event && event.target) event.target.classList.add("active");
+    document.getElementById("css-panel").classList.add("active");
+  }
+}
+
+function openModal(projectId) {
+  var proj = projectsData.find(function(p) { return p.id === projectId; });
+  if (!proj) return;
+  document.getElementById("mTitle").innerText = proj.title;
+  var html = "";
+  proj.steps.forEach(function(step, idx) {
+    html += `<div class="modal-step"><h4>Step ${idx + 1}</h4><p>${step}</p></div>`;
+  });
+  html += `<div class="tip-box" style="margin-top:15px;"><strong>Useful Hint:</strong> ${proj.hints}</div>`;
+  document.getElementById("mBody").innerHTML = html;
+  document.getElementById("projectModal").classList.add("active");
+}
+
+function closeModal() {
+  document.getElementById("projectModal").classList.remove("active");
+}
+
+function runCode() {
+  var codeEl = document.getElementById("playgroundCode");
+  var iframe = document.getElementById("playgroundFrame");
+  if (!codeEl || !iframe) return;
+  var code = codeEl.value;
+  var doc = iframe.contentDocument || iframe.contentWindow.document;
+  doc.open();
+  doc.write(code);
+  doc.close();
+}
 
 /* ===================================================
-   TRACK CERTIFICATE GENERATOR (HTML & CSS)
+   QUIZ SYSTEM (SINGLE WORKING VERSION)
    =================================================== */
-var selectedCertTrack = 'html'; // default track
+var activeQuizTrack = 'html';
+var currentQuestion = 0;
+var userScore = 0;
+
+function switchQuizTrack(track) {
+  activeQuizTrack = track;
+  currentQuestion = 0;
+  userScore = 0;
+
+  var btnHtml = document.getElementById("btnQuizHtml");
+  var btnCss = document.getElementById("btnQuizCss");
+
+  if (btnHtml && btnCss) {
+    btnHtml.className = track === 'html' ? "btn btn-primary" : "btn btn-secondary";
+    btnCss.className = track === 'css' ? "btn btn-primary" : "btn btn-secondary";
+  }
+
+  renderQuiz();
+}
+
+function getActiveQuiz() {
+  return activeQuizTrack === 'html' ? htmlQuizQuestions : cssQuizQuestions;
+}
+
+function renderQuiz() {
+  var container = document.getElementById("quizCard");
+  if (!container) return;
+
+  var questions = getActiveQuiz();
+
+  if (currentQuestion >= questions.length) {
+    var pass = userScore >= Math.ceil(questions.length * 0.7);
+    container.innerHTML = `
+      <div style="text-align:center; padding: 20px;">
+        <h2 style="font-size:24px; color:var(--text-primary); margin-bottom:12px;">
+          ${pass ? '🎉 Quiz Completed!' : '💪 Keep Practicing!'}
+        </h2>
+        <p style="font-size:16px; color:var(--text-secondary); margin-bottom:20px;">
+          You scored <strong>${userScore}</strong> out of <strong>${questions.length}</strong> on the <strong>${activeQuizTrack.toUpperCase()} Quiz</strong>!
+        </p>
+        <button class="btn btn-primary" onclick="restartQuiz()">
+          <i class="fa-solid fa-rotate-right"></i> Retake ${activeQuizTrack.toUpperCase()} Quiz
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  var q = questions[currentQuestion];
+  var optsHtml = "";
+  q.options.forEach(function(opt, idx) {
+    optsHtml += `
+      <div class="quiz-option" onclick="selectOption(${idx})">
+        ${opt}
+      </div>
+    `;
+  });
+
+  container.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <span class="reader-badge" style="text-transform:uppercase;">${activeQuizTrack.toUpperCase()} QUIZ</span>
+      <span style="font-size:14px; font-weight:700; color:var(--accent-purple);">Question ${currentQuestion + 1} of ${questions.length}</span>
+    </div>
+    <h3 style="font-size:18px; margin-bottom:20px; color:var(--text-primary);">${q.q}</h3>
+    <div>${optsHtml}</div>
+  `;
+}
+
+function selectOption(index) {
+  var questions = getActiveQuiz();
+  var q = questions[currentQuestion];
+  if (q.answer === index || q.ans === index) {
+    userScore++;
+    if (typeof addBlooms === 'function') {
+      addBlooms(20, "Correct Quiz Answer");
+    }
+  }
+  currentQuestion++;
+  renderQuiz();
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  userScore = 0;
+  renderQuiz();
+}
 
 function selectCertTrack(track) {
   selectedCertTrack = track;
-  
-  // Highlight active button
   var htmlBtn = document.getElementById('btnCertHtml');
   var cssBtn = document.getElementById('btnCertCss');
-  
   if (track === 'html') {
     if (htmlBtn) htmlBtn.style.borderColor = 'var(--accent-purple)';
     if (cssBtn) cssBtn.style.borderColor = 'var(--border-color)';
@@ -1110,14 +1559,14 @@ function selectCertTrack(track) {
 }
 
 function generateTrackCert() {
-  var name = document.getElementById("studentName").value.trim();
+  var nameInput = document.getElementById("studentName");
+  var name = nameInput ? nameInput.value.trim() : "";
 
   if (!name) {
     alert("Please enter your full name first!");
     return;
   }
 
-  // Check if track is completed
   var isHtmlComplete = userProgress.htmlIndex >= htmlLessons.length;
   var isCssComplete = userProgress.cssIndex >= cssLessons.length;
 
@@ -1131,7 +1580,6 @@ function generateTrackCert() {
     return;
   }
 
-  // Set Certificate Content based on track
   document.getElementById("certName").innerText = name;
   document.getElementById("certDate").innerText = new Date().toLocaleDateString();
 
@@ -1143,165 +1591,83 @@ function generateTrackCert() {
       "for successfully completing all " + cssLessons.length + " CSS chapters and demonstrating full mastery of CSS3, Flexbox, Grid layouts, and responsive web design.";
   }
 
-  // Show Certificate
   var certArea = document.getElementById("certArea");
-  certArea.style.display = "block";
-  certArea.scrollIntoView({ behavior: 'smooth' });
+  if (certArea) {
+    certArea.style.display = "block";
+    certArea.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  addBlooms(500, "Course Graduation");
 }
 
-    
-    /* ===================================================
-   FREE RESOURCES POPUP FUNCTIONALITY
-   =================================================== */
 function showResource(type) {
   if (type === 'template') {
-    alert(
-      "HTML5 Boilerplate Starter Code:\n\n" +
-      "<!DOCTYPE html>\n" +
-      "<html lang=\"en\">\n" +
-      "<head>\n" +
-      "  <meta charset=\"UTF-8\">\n" +
-      "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-      "  <title>My First Website</title>\n" +
-      "  <link rel=\"stylesheet\" href=\"style.css\">\n" +
-      "</head>\n" +
-      "<body>\n" +
-      "  <h1>Hello World!</h1>\n" +
-      "  <script src=\"script.js\"><\/script>\n" +
-      "</body>\n" +
-      "</html>"
-    );
+    alert("HTML5 Boilerplate Starter Code:\n\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My First Website</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Hello World!</h1>\n  <script src=\"script.js\"><\/script>\n</body>\n</html>");
   } else if (type === 'flexbox') {
-    alert(
-      "CSS Flexbox Quick Cheat Sheet:\n\n" +
-      "display: flex;\n" +
-      "justify-content: center;   /* Align horizontally: flex-start | center | flex-end | space-between */\n" +
-      "align-items: center;       /* Align vertically: flex-start | center | flex-end | stretch */\n" +
-      "flex-direction: column;    /* Direction: row | column | row-reverse | column-reverse */\n" +
-      "gap: 20px;                 /* Space between items */\n" +
-      "flex-wrap: wrap;           /* Allow items to wrap: nowrap | wrap */"
-    );
+    alert("CSS Flexbox Quick Cheat Sheet:\n\ndisplay: flex;\njustify-content: center;\nalign-items: center;\nflex-direction: column;\ngap: 20px;\nflex-wrap: wrap;");
   } else if (type === 'inputs') {
-    alert(
-      "Form Inputs Cheat Sheet:\n\n" +
-      "\n" +
-      "<input type=\"radio\" id=\"a\" name=\"choice\" value=\"A\">\n" +
-      "<label for=\"a\">Option A</label>\n\n" +
-      "\n" +
-      "<input type=\"checkbox\" id=\"b\" name=\"skills\" value=\"B\">\n" +
-      "<label for=\"b\">Option B</label>\n\n" +
-      "\n" +
-      "<input type=\"text\" placeholder=\"Enter name\">\n" +
-      "<input type=\"email\" placeholder=\"name@email.com\">"
-    );
+    alert("Form Inputs Cheat Sheet:\n\n<input type=\"radio\" id=\"a\" name=\"choice\" value=\"A\">\n<label for=\"a\">Option A</label>\n\n<input type=\"checkbox\" id=\"b\" name=\"skills\" value=\"B\">\n<label for=\"b\">Option B</label>\n\n<input type=\"text\" placeholder=\"Enter name\">\n<input type=\"email\" placeholder=\"name@email.com\">");
   }
 }
-/* ===================================================
-   PROGRESS, STREAK & BLOOMS (XP) SYSTEM
-   =================================================== */
 
-// Load saved progress or initialize defaults
-var userProgress = { htmlIndex: 0, cssIndex: 0, blooms: 0 };
-try {
-  var saved = localStorage.getItem('codebloom_progress');
-  if (saved) { userProgress = JSON.parse(saved); }
-} catch(e) {}
+function switchQuizTrack(track) {
+  activeQuizTrack = track;
+  currentQuestion = 0;
+  userScore = 0;
 
-// Daily Streak Calculation
-function updateStreak() {
-  var lastVisit = localStorage.getItem('codebloom_last_date');
-  var today = new Date().toDateString();
-  var streak = parseInt(localStorage.getItem('codebloom_streak') || '1');
-
-  if (lastVisit) {
-    var lastDate = new Date(lastVisit);
-    var currentDate = new Date(today);
-    var diffTime = Math.abs(currentDate - lastDate);
-    var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-    if (diffDays === 1) {
-      streak += 1;
-    } else if (diffDays > 1) {
-      streak = 1;
-    }
+  var btnHtml = document.getElementById("btnQuizHtml");
+  var btnCss = document.getElementById("btnQuizCss");
+  if (btnHtml && btnCss) {
+    btnHtml.className = track === 'html' ? "btn btn-primary" : "btn btn-secondary";
+    btnCss.className = track === 'css' ? "btn btn-primary" : "btn btn-secondary";
   }
-
-  localStorage.setItem('codebloom_last_date', today);
-  localStorage.setItem('codebloom_streak', streak);
-
-  var streakEl = document.getElementById('streakCount');
-  if (streakEl) { streakEl.innerText = streak; }
-
-  var bloomsEl = document.getElementById('bloomsCount');
-  if (bloomsEl) { bloomsEl.innerText = userProgress.blooms || 0; }
+  renderQuiz();
 }
 
-// Render Lessons with Sequential Locking Logic
-function renderLessons(lessons, targetId) {
-  var container = document.getElementById(targetId);
+function getActiveQuiz() {
+  return activeQuizTrack === 'html' ? htmlQuizQuestions : cssQuizQuestions;
+}
+
+function renderQuiz() {
+  var container = document.getElementById("quizCard");
   if (!container) return;
-  container.innerHTML = "";
 
-  var isHtml = targetId === 'html-lessons';
-  var unlockedIndex = isHtml ? userProgress.htmlIndex : userProgress.cssIndex;
-
-  lessons.forEach(function(item, index) {
-    var isLocked = index > unlockedIndex;
-    var isCompleted = index < unlockedIndex;
-
-    var div = document.createElement("div");
-    div.className = "lesson-item" + (isLocked ? " locked" : "") + (isCompleted ? " completed" : "");
-    
-    div.innerHTML = `
-      <div class="lesson-header" onclick="${isLocked ? '' : 'toggleAccordion(this)'}">
-        <div class="lesson-header-left">
-          <div class="lesson-num">${isCompleted ? '<i class="fa-solid fa-check"></i>' : item.num}</div>
-          <div class="lesson-title">${item.title} ${isLocked ? '<i class="fa-solid fa-lock" style="font-size:12px;margin-left:6px;color:var(--text-muted)"></i>' : ''}</div>
-        </div>
-        <i class="fa-solid fa-chevron-down lesson-toggle"></i>
-      </div>
-      <div class="lesson-body">
-        <div class="lesson-body-inner">
-          <p class="lesson-explanation">${item.content.replace(/\n/g, '<br>')}</p>
-          <div class="code-block">${escapeHtml(item.code)}</div>
-          <div class="tip-box"><strong>Tip:</strong> ${item.tip}</div>
-          ${!isCompleted ? `
-            <button class="btn-complete-chapter" onclick="completeChapter('${isHtml ? 'html' : 'css'}', ${index})">
-              <i class="fa-solid fa-seedling"></i> Complete Chapter (+50 Blooms)
-            </button>
-          ` : '<p style="color:#10b981;font-size:12px;font-weight:700;margin-top:12px;"><i class="fa-solid fa-check-circle"></i> Chapter Completed (+50 Blooms Earned)</p>'}
-        </div>
+  var questions = getActiveQuiz();
+  if (currentQuestion >= questions.length) {
+    var pass = userScore >= Math.ceil(questions.length * 0.7);
+    container.innerHTML = `
+      <div style="text-align:center; padding: 20px;">
+        <h2 style="font-size:24px; color:var(--text-primary); margin-bottom:12px;">
+          ${pass ? '🎉 Quiz Completed!' : '💪 Keep Practicing!'}
+        </h2>
+        <p style="font-size:16px; color:var(--text-secondary); margin-bottom:20px;">
+          You scored <strong>${userScore} / ${questions.length}</strong>
+        </p>
+        <button class="btn btn-primary" onclick="restartQuiz()">Restart Quiz</button>
       </div>
     `;
-    container.appendChild(div);
-  });
-}
-
-// Complete Chapter & Award 50 Blooms
-function completeChapter(track, index) {
-  if (track === 'html') {
-    if (index === userProgress.htmlIndex) {
-      userProgress.htmlIndex++;
-      userProgress.blooms = (userProgress.blooms || 0) + 50;
-    }
-  } else {
-    if (index === userProgress.cssIndex) {
-      userProgress.cssIndex++;
-      userProgress.blooms = (userProgress.blooms || 0) + 50;
-    }
+    return;
   }
 
-  // Save updated data
-  localStorage.setItem('codebloom_progress', JSON.stringify(userProgress));
+  var q = questions[currentQuestion];
+  var optsHtml = "";
+  q.options.forEach(function(opt, idx) {
+    optsHtml += `<div class="quiz-option" onclick="selectOption(${idx})">${opt}</div>`;
+  });
 
-  // Update UI
-  var bloomsEl = document.getElementById('bloomsCount');
-  if (bloomsEl) { bloomsEl.innerText = userProgress.blooms; }
-
-  renderLessons(htmlLessons, 'html-lessons');
-  renderLessons(cssLessons, 'css-lessons');
+  container.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <span style="font-size:12px; font-weight:700; color:var(--accent-purple); text-transform:uppercase;">
+        ${activeQuizTrack.toUpperCase()} QUIZ
+      </span>
+      <span style="font-size:13px; color:var(--text-muted);">
+        Question ${currentQuestion + 1} of ${questions.length}
+      </span>
+    </div>
+    <h3 style="font-size:17px; margin-bottom:18px; color:var(--text-primary);">${q.q}</h3>
+    <div>${optsHtml}</div>
+  `;
 }
-
     /* ===================================================
        CONTACT FORM
        =================================================== */
@@ -1336,12 +1702,63 @@ function completeChapter(track, index) {
         document.body.classList.toggle("dark");
       });
 
-      // Hide loader
-      setTimeout(function() {
-        document.getElementById('loader').classList.add('hidden');
-      }, 400);
-    });
-    
+     // Hide loader
+  setTimeout(function() {
+    document.getElementById('loader').classList.add('hidden');
+  }, 400);
+
+  renderQuiz(); // <--- ADD THIS EXACT LINE HERE!
+}); 
+    document.addEventListener("DOMContentLoaded", function () {
+    switchQuizTrack("html");
+});
   </script>
+  <div id="fullPageReader" class="full-page-reader" style="display: none;">
+  <div class="reader-container">
+    <div class="reader-topbar">
+      <button class="btn-back" onclick="closeFullPageReader()">
+        <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+      </button>
+      <span id="readerTrackBadge" class="reader-badge">HTML CHAPTER 01</span>
+    </div>
+
+    <div class="reader-card">
+      <h1 id="readerTitle" class="reader-heading">Lesson Title</h1>
+      
+      <div id="readerContent" class="reader-text">
+        </div>
+
+      <div class="reader-action-bar">
+        <button id="btnCompleteFullLesson" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-seedling"></i> Complete Chapter & Claim +100 Blooms
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="fullPageReader" style="display: none;">
+  <div class="reader-container">
+    <div class="reader-topbar">
+      <button class="btn-back" onclick="closeFullPageReader()">
+        <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+      </button>
+      <span id="readerTrackBadge" class="reader-badge">HTML CHAPTER 01</span>
+    </div>
+
+    <div class="reader-card">
+      <h1 id="readerTitle" class="reader-heading">Lesson Title</h1>
+      
+      <div id="readerContent" class="reader-text">
+        </div>
+
+      <div class="reader-action-bar">
+        <button id="btnCompleteFullLesson" class="btn btn-primary" style="padding: 14px 28px; font-size: 15px; border-radius: 50px;">
+          <i class="fa-solid fa-sparkles"></i> Complete Chapter (+100 Blooms)
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer"></footer></div>
+
 </body>
 </html>
