@@ -455,6 +455,62 @@ body.dark .reader-text {
   border-top: 2px dashed #f3e8ff;
   text-align: center;
 }
+/* ================= Mobile Navbar ================= */
+
+.menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:var(--text);
+    font-size:28px;
+    cursor:pointer;
+}
+
+@media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+    }
+    .nav-inner{
+    display:grid;
+    grid-template-columns: auto 1fr auto;
+    align-items:center;
+    gap:10px;
+}
+
+.nav-logo{
+    grid-column:1;
+}
+
+.nav-actions{
+    grid-column:2;
+    justify-self:center;
+    display:flex;
+    gap:10px;
+    flex-wrap:nowrap;
+}
+
+.menu-toggle{
+    grid-column:3;
+    justify-self:end;
+}
+
+    .nav-links{
+        display:none;
+        flex-direction:column;
+        width:100%;
+        margin-top:15px;
+        gap:15px;
+        background:var(--card);
+        padding:15px;
+        border-radius:12px;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+}
   </style>
 </head>
 <body>
@@ -468,18 +524,7 @@ body.dark .reader-text {
     <div class="loader-text">Loading CodeBloom...</div>
   </div>
 
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">CodeBloom</a>
-      <div class="nav-links">
-        <a href="#learn">Learn</a>
-        <a href="#projects">Projects</a>
-        <a href="#playground">Playground</a>
-        <a href="#quiz">Quiz</a>
-        <a href="#certifications">Certificates</a>
-        <a href="#resources">Resources</a>
-        <a href="#contact">Contact</a>
-      </div>
+
       <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#" class="nav-logo">CodeBloom</a>
@@ -492,6 +537,7 @@ body.dark .reader-text {
         <a href="#resources">Resources</a>
         <a href="#contact">Contact</a>
       </div>
+      <button class="menu-toggle" id="menuToggle">☰</button>
       <div class="nav-actions">
         <div class="streak-badge" id="streakBadge" title="Daily Learning Streak">
           <i class="fa-solid fa-fire"></i> <span id="streakCount">1</span>
@@ -1711,6 +1757,20 @@ function renderQuiz() {
 }); 
     document.addEventListener("DOMContentLoaded", function () {
     switchQuizTrack("html");
+});
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.querySelector(".nav-links");
+
+menuToggle.addEventListener("click", function () {
+
+    navLinks.classList.toggle("active");
+
+    if(navLinks.classList.contains("active")){
+        menuToggle.textContent = "✕";
+    } else {
+        menuToggle.textContent = "☰";
+    }
+
 });
   </script>
   <div id="fullPageReader" class="full-page-reader" style="display: none;">
