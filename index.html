@@ -476,7 +476,7 @@ body.dark .reader-text {
     grid-template-columns: auto 1fr auto;
     align-items:center;
     gap:10px;
-}
+    }
 
 .nav-logo{
     grid-column:1;
@@ -496,7 +496,7 @@ body.dark .reader-text {
 }
 
     .nav-links{
-        display:none;
+        display:none !important;
         flex-direction:column;
         width:100%;
         margin-top:15px;
@@ -507,8 +507,169 @@ body.dark .reader-text {
     }
 
     .nav-links.active{
-        display:flex;
+        display:flex !important;
     }
+
+}
+/* ===========================
+   MOBILE RESPONSIVE FIXES
+   (Desktop remains unchanged)
+=========================== */
+
+@media (max-width:768px){
+
+  .container{
+    padding:0 16px;
+  }
+
+  .section{
+    padding:60px 0;
+  }
+
+  /* HERO */
+
+  .hero{
+    min-height:auto;
+    padding-top:110px;
+    padding-bottom:60px;
+  }
+
+  .hero-title{
+    font-size:36px;
+    line-height:1.2;
+  }
+
+  .hero-desc{
+    font-size:15px;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .hero-buttons .btn{
+    width:100%;
+    max-width:320px;
+    justify-content:center;
+  }
+
+  /* NAVIGATION */
+
+  .nav-links{
+    position:absolute;
+    top:72px;
+    left:16px;
+    right:16px;
+
+    background:var(--bg-secondary);
+    border:1px solid var(--border-color);
+    border-radius:16px;
+    padding:18px;
+
+    box-shadow:var(--shadow-lg);
+    display:none;
+    z-index:9999;
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .nav-links a{
+    width:100%;
+    text-align:center;
+    padding:12px;
+  }
+
+  .nav-actions{
+    gap:6px;
+  }
+
+  .streak-badge,
+  .blooms-badge{
+    font-size:11px;
+    padding:5px 8px;
+  }
+
+  /* STATS */
+
+  .stats-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  /* PROJECTS */
+
+  .projects-grid{
+    grid-template-columns:1fr;
+  }
+
+  /* RESOURCES */
+
+  .resources-grid{
+    grid-template-columns:1fr;
+  }
+
+  /* QUIZ */
+
+  #quiz .container > div:first-of-type{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  #btnQuizHtml,
+  #btnQuizCss{
+    width:100%;
+  }
+
+  .quiz-card{
+    padding:20px;
+  }
+
+  /* CERTIFICATE */
+
+  .cert-box{
+    padding:20px;
+  }
+
+  #studentName{
+    width:100% !important;
+  }
+
+  /* CONTACT */
+
+  .contact-form{
+    width:100%;
+  }
+
+  /* MODAL */
+
+  .modal-content{
+    padding:20px;
+  }
+
+  /* READER */
+
+  .reader-topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  .reader-card{
+    padding:24px;
+  }
+
+  .reader-heading{
+    font-size:24px;
+  }
+
+  /* CODE BLOCKS */
+
+  .code-block{
+    font-size:12px;
+  }
 
 }
   </style>
@@ -552,7 +713,6 @@ body.dark .reader-text {
         </button>
       </div>
     </div>
-  </nav>
   </nav>
 
   <section class="hero">
